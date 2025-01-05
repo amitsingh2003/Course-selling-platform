@@ -5,6 +5,7 @@ import bookRoute from "./route/book.route.js";
 import  cors from "cors";
 import userRoute from "./route/user.route.js";
 
+
 dotenv.config();
 
 const app = express(); // Initialize `app` before using it
@@ -25,7 +26,8 @@ mongoose
   app.use("/book", bookRoute); // Use `app` after initialization
   app.use("/user", userRoute); // Use `app` after initialization
 
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
-});
+});  
