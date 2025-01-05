@@ -47,7 +47,7 @@ const Login = () => {
                 ✕
               </Link>
               <h3 className=" text-lg text-pink-500 font-bold">Login</h3>
-              <div className="mt-4">
+              <div className="mt-4  dark:text-slate-600">
                 <span>Email</span>
                 <br></br>
                 <input
@@ -65,7 +65,7 @@ const Login = () => {
                 )}
               </div>
               {/* Password */}
-              <div className="mt-4">
+              <div className="mt-4 dark:text-slate-600">
                 <span>Password</span>
                 <br></br>
                 <input

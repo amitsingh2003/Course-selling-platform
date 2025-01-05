@@ -52,7 +52,7 @@ function SignUP() {
 
               <h3 className="font-bold text-lg text-pink-500">SignUp</h3>
 
-              <div className="mt-5">
+              <div className="mt-5  dark:text-slate-600">
                 <span>Name</span>
                 <br></br>
                 <input
@@ -70,7 +70,7 @@ function SignUP() {
                 )}
               </div>
 
-              <div className="mt-5">
+              <div className="mt-5  dark:text-slate-600">
                 <span>Email</span>
                 <br></br>
                 <input
@@ -88,7 +88,7 @@ function SignUP() {
                 )}
               </div>
 
-              <div className="mt-5">
+              <div className="mt-5  dark:text-slate-600">
                 <span>Password</span>
                 <br></br>
                 <input
