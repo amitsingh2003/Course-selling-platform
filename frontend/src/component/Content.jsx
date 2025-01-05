@@ -32,10 +32,10 @@ function Content() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-6 mt-20">
-      <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-8">
+    <div className="min-h-screen bg-white flex items-center justify-center p-6 mt-16  dark:bg-slate-900">
+      <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-8  dark:bg-slate-900 dark:text-slate-600">
         <h2 className="text-3xl font-bold text-pink-500 text-center mb-6">Contact Us</h2>
-        <p className="text-gray-600 text-center mb-8">
+        <p className="text-gray-600  dark:text-white text-center mb-8">
           Have questions or need help? Fill out the form below, and we’ll get back to you as soon as possible.
         </p>
 
@@ -44,22 +44,22 @@ function Content() {
           <div className="space-y-6">
             <div>
               <h3 className="text-lg font-semibold text-pink-500">Phone</h3>
-              <p className="text-gray-600">+1 (234) 567-890</p>
+              <p className="text-gray-600  dark:text-white">+1 (234) 567-890</p>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-pink-500">Email</h3>
-              <p className="text-gray-600">support@estore.com</p>
+              <p className="text-gray-600  dark:text-white">support@estore.com</p>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-pink-500">Address</h3>
-              <p className="text-gray-600">123 E-Store Street, Tech City, 56789</p>
+              <p className="text-gray-600  dark:text-white">123 E-Store Street, Tech City, 56789</p>
             </div>
           </div>
 
           {/* Contact Form */}
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="name" className="block text-gray-800 font-medium">
+              <label htmlFor="name" className="block text-gray-800 font-medium  dark:text-white">
                 Name
               </label>
               <input
@@ -74,7 +74,7 @@ function Content() {
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-gray-800 font-medium">
+              <label htmlFor="email" className="block text-gray-800 font-medium  dark:text-white">
                 Email
               </label>
               <input
@@ -89,7 +89,7 @@ function Content() {
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-gray-800 font-medium">
+              <label htmlFor="message" className="block text-gray-800 font-medium  dark:text-white">
                 Message
               </label>
               <textarea
