@@ -9,7 +9,7 @@ function Banner() {
           <div className="space-y-12">
             <h1 className="text-4xl font-bold ">
               Hello , Welcome to{" "}
-              <span className="text-pink-500">Sunfire Sensei </span>
+              <span className="text-pink-500">E-Learn </span>
             </h1>
             <p className=" text-xl ">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae

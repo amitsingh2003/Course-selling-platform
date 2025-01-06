@@ -26,9 +26,9 @@ function About_mat() {
                 <h3 className="text-3xl font-bold text-gray-700 dark:text-white"></h3>
                 <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Necessitatibus suscipit est quo maxime d electus magnam
+                  Necessitatibus suscipit est quo maxime delectus magnam
                   corrupti excepturi libero! Deserunt ab eos rerum provident
-                  quidem tempora mollitia m agni placeat repudiandae
+                  quidem tempora mollitia magni placeat repudiandae
                   obcaecati.Lorem ipsum dolor sit, amet consectetur adipisicing
                   elit. Necessitatibus suscipit est quo maxime delectus magnam
                   corrupti excepturi libero.
@@ -127,7 +127,6 @@ function About_mat() {
             </div>
           </div>
 
-
           {/* Educators Section with Scroll Animation */}
           <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-4xl font-extrabold text-pink-500 mb-8">
@@ -187,56 +186,28 @@ function About_mat() {
             <h2 className="text-4xl font-extrabold text-pink-500">
               Student Ratings
             </h2>
-            <p className="mt-4 text-xl text-gray-600  dark:text-white">
-              Join thousands of learners who love our platform!
-            </p>
-            <div className="flex justify-center space-x-1.5 mt-6">
-              <svg
-                className="w-8 fill-yellow-400 transition-all duration-300 transform hover:scale-125"
-                viewBox="0 0 14 13"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12L7 10.5L3.8855 12L4.0056 8.29787L1.3426 4.83688L5.5313 3.60213L7 0Z" />
-              </svg>
-              <svg
-                className="w-8 fill-yellow-400 transition-all duration-300 transform hover:scale-125"
-                viewBox="0 0 14 13"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12L7 10.5L3.8855 12L4.0056 8.29787L1.3426 4.83688L5.5313 3.60213L7 0Z" />
-              </svg>
-              <svg
-                className="w-8 fill-yellow-400 transition-all duration-300 transform hover:scale-125"
-                viewBox="0 0 14 13"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12L7 10.5L3.8855 12L4.0056 8.29787L1.3426 4.83688L5.5313 3.60213L7 0Z" />
-              </svg>
-              <svg
-                className="w-8 fill-yellow-400 transition-all duration-300 transform hover:scale-125"
-                viewBox="0 0 14 13"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12L7 10.5L3.8855 12L4.0056 8.29787L1.3426 4.83688L5.5313 3.60213L7 0Z" />
-              </svg>
-              <svg
-                className="w-8 fill-gray-300 transition-all duration-300 transform hover:scale-125"
-                viewBox="0 0 14 13"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12L7 10.5L3.8855 12L4.0056 8.29787L1.3426 4.83688L5.5313 3.60213L7 0Z" />
-              </svg>
+            <div className="flex justify-center mt-8">
+              <div className="flex items-center">
+                <span className="text-2xl text-yellow-500">★★★★★</span>
+                <span className="ml-2 text-xl text-gray-600">(4.9/5)</span>
+              </div>
             </div>
           </div>
 
-          {/* Call to Action Section with Scroll Animation */}
-          <div className="text-center" data-aos="fade-up">
-            <h2 className="text-4xl font-extrabold text-pink-500 mb-6 ">
+          {/* Call to Action Section */}
+          <div className="text-center mb-16" data-aos="fade-up">
+            <h2 className="text-4xl font-extrabold text-pink-500">
               Join Us Today!
             </h2>
-            <p className="mt-4 text-xl text-gray-600  dark:text-white">
-              Embark on your learning journey with us and unlock your potential.
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+              Start your learning journey with us and explore endless
+              opportunities.
             </p>
             <Link
               to="/SignUp"
-              className="mt-6 bg-pink-500 text-white py-3 px-6 rounded-lg hover:bg-pink-600 transition duration-300 transform hover:scale-105 inline-block text-center"
+              className="mt-6 inline-block bg-pink-500 text-white text-lg font-semibold py-3 px-8 rounded-lg hover:bg-pink-600 transition-all"
             >
-              Sign Up Now
+              SignUp Now
             </Link>
           </div>
         </div>
