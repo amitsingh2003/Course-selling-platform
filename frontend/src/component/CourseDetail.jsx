@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import Course from "./Course";
@@ -55,6 +55,12 @@ function CourseDetail() {
     },
   ];
 
+  const navigate = useNavigate();
+
+  const handleBuyNow = () => {
+    navigate(`/purchase/${course.id}`, { state: { course } });
+  };
+  
   return (
     <>
       <Nav />
@@ -91,7 +97,7 @@ function CourseDetail() {
               vero!
             </p>
             <p className="text-xl font-semibold mb-4">
-              Category:{" "}
+              Category :{" "}
               <span className="text-2xl font-semibold mb-4 text-pink-500">
                 {course.category}
               </span>
@@ -99,6 +105,13 @@ function CourseDetail() {
             <p className="text-lg font-semibold text-green-600">
               Price: ${course.price}
             </p>
+
+            <button
+              className="text-white bg-pink-500 rounded-xl px-6 py-2 mt-4 font-semibold hover:bg-pink-700 hover:scale-105"
+              onClick={handleBuyNow}
+            >
+              Buy Now
+            </button>
           </div>
         </div>
 

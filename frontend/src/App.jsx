@@ -9,6 +9,7 @@ import { useAuth } from "./context/Authprovider";
 import Contact from "./component/Contact";
 import About from "./component/About";
 import CourseDetail from "./component/CourseDetail";
+import CoursePurchase from "./component/CoursePurchase";
 
 function App() {
   const [authUser, setAuthUser] = useAuth();
@@ -27,6 +28,11 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/About" element={<About />} />
           <Route path="/Course/:id" element={<CourseDetail />} />
+          
+          <Route
+            path="//purchase/:id"
+            element={authUser ? <CoursePurchase /> : <Navigate to="/SignUp" />}
+          />
         </Routes>
         <Toaster />
       </div>

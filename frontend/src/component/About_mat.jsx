@@ -135,48 +135,54 @@ function About_mat() {
             <div className="grid md:grid-cols-3 gap-12">
               {/* Educator 1 */}
               <div
-                className="bg-gradient-to-r from-gray-700 to-gray-800 p-8 rounded-xl shadow-xl text-center transform transition-all hover:scale-105 neomorphism"
+                className="h-[16em] w-[18em] border-2 border-[rgba(255,105,180,0.5)] rounded-[1.5em] bg-gradient-to-br from-[rgba(255,105,180,1)] to-[rgba(255,182,193,0.01)] text-white font-nunito p-[1em] flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px] shadow-xl transform transition-all hover:scale-105"
                 data-aos="flip-left"
               >
                 <img
                   src="https://th.bing.com/th/id/OIP.k3ZfVJqxkc64MlyWaJp5JAHaHa?rs=1&pid=ImgDetMain"
                   alt="John Doe"
-                  className="w-32 h-32 rounded-full mx-auto transition-all duration-500 transform hover:scale-110"
+                  className="w-24 h-24 rounded-full mx-auto transition-all duration-500 transform hover:scale-110"
                 />
-                <h3 className="text-xl font-semibold mt-4 text-pink-500">
+                <h3 className="text-[1.5em] font-medium text-center mt-4">
                   John Doe
                 </h3>
-                <p className="text-gray-300">Digital Marketing Expert</p>
+                <p className="text-[0.85em] text-center">
+                  Digital Marketing Expert
+                </p>
               </div>
               {/* Educator 2 */}
               <div
-                className="bg-gradient-to-r from-gray-700 to-gray-800 p-8 rounded-xl shadow-xl text-center transform transition-all hover:scale-105 neomorphism"
+                className="h-[16em] w-[18em] border-2 border-[rgba(255,105,180,0.5)] rounded-[1.5em] bg-gradient-to-br from-[rgba(255,105,180,1)] to-[rgba(255,182,193,0.01)] text-white font-nunito p-[1em] flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px] shadow-xl transform transition-all hover:scale-105"
                 data-aos="flip-left"
               >
                 <img
                   src="https://th.bing.com/th/id/R.23a8b92e408d77554077f39acf8a9a01?rik=mHY4QSDf8Bq48w&riu=http%3a%2f%2fww1.prweb.com%2fprfiles%2f2018%2f06%2f19%2f15574951%2f16114837_10154855433134360_7166660686350361752_n.jpg&ehk=2lD5JqWRhnRO7t9gfJivP%2boK7B%2baodCm1knjm0ruEl0%3d&risl=&pid=ImgRaw&r=0"
                   alt="Jane Smith"
-                  className="w-32 h-32 rounded-full mx-auto transition-all duration-500 transform hover:scale-110"
+                  className="w-24 h-24 rounded-full mx-auto transition-all duration-500 transform hover:scale-110"
                 />
-                <h3 className="text-xl font-semibold mt-4 text-pink-500">
+                <h3 className="text-[1.5em] font-medium text-center mt-4">
                   Jane Smith
                 </h3>
-                <p className="text-gray-300">Data Science Specialist</p>
+                <p className="text-[0.85em] text-center">
+                  Data Science Specialist
+                </p>
               </div>
               {/* Educator 3 */}
               <div
-                className="bg-gradient-to-r from-gray-700 to-gray-800 p-8 rounded-xl shadow-xl text-center transform transition-all hover:scale-105 neomorphism"
+                className="h-[16em] w-[18em] border-2 border-[rgba(255,105,180,0.5)] rounded-[1.5em] bg-gradient-to-br from-[rgba(255,105,180,1)] to-[rgba(255,182,193,0.01)] text-white font-nunito p-[1em] flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px] shadow-xl transform transition-all hover:scale-105"
                 data-aos="flip-left"
               >
                 <img
                   src="https://th.bing.com/th/id/OIP.H5THO9hrKv2Cc5CWQkIQRwHaHa?rs=1&pid=ImgDetMain"
                   alt="Emily Johnson"
-                  className="w-32 h-32 rounded-full mx-auto transition-all duration-500 transform hover:scale-110"
+                  className="w-24 h-24 rounded-full mx-auto transition-all duration-500 transform hover:scale-110"
                 />
-                <h3 className="text-xl font-semibold mt-4 text-pink-500">
+                <h3 className="text-[1.5em] font-medium text-center mt-4">
                   Emily Johnson
                 </h3>
-                <p className="text-gray-300">Creative Writing Instructor</p>
+                <p className="text-[0.85em] text-center">
+                  Creative Writing Instructor
+                </p>
               </div>
             </div>
           </div>
