@@ -70,7 +70,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white dark:from-slate-900 dark:to-slate-800 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white dark:from-slate-900 dark:to-slate-800 py-12 px-4 mt-16">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-pink-600 dark:text-pink-400 mb-4">
