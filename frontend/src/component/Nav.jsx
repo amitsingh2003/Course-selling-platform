@@ -4,11 +4,10 @@ import { useAuth } from "../context/Authprovider";
 import Logout from "./Logout";
 
 function Nav() {
-const [authUser , setAuthUser] = useAuth();
+  const [authUser, setAuthUser] = useAuth();
 
-
-const [authuser , setauthuser] =useAuth();
-console.log(authuser);
+  const [authuser, setauthuser] = useAuth();
+  console.log(authuser);
 
   const [theme, settheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -96,7 +95,7 @@ console.log(authuser);
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow dark:bg-slate-500 "
             >
               {navitems}
             </ul>
@@ -113,13 +112,7 @@ console.log(authuser);
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-2">{navitems}</ul>
           </div>
-          <div className="hidden md:block">
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input input-bordered w-full max-w-xs dark:bg-slate-700 dark:text-white"
-            />
-          </div>
+
           <div>
             <label className="grid cursor-pointer place-items-center">
               <input
@@ -165,18 +158,21 @@ console.log(authuser);
             </label>
           </div>
 
-          {
-            authUser?<Logout></Logout>:
-          
-          <div>
-            <a
-              className="btn hover:bg-pink-500 hover:text-white"
-              onClick={() => document.getElementById("my_modal_3").showModal()}
-            >
-              LogIn
-            </a>
-            <Login></Login>
-          </div>}
+          {authUser ? (
+            <Logout></Logout>
+          ) : (
+            <div>
+              <a
+                className="btn hover:bg-pink-500 hover:text-white"
+                onClick={() =>
+                  document.getElementById("my_modal_3").showModal()
+                }
+              >
+                LogIn
+              </a>
+              <Login></Login>
+            </div>
+          )}
         </div>
       </div>
     </div>

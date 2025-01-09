@@ -109,19 +109,23 @@ const CoursePurchase = () => {
 
               {/* Terms */}
               <p className="text-sm text-pink-500 mt-6">
-                E-learn is required by law to collect applicable transaction taxes
-                for purchases made in certain tax jurisdictions.
+                E-learn is required by law to collect applicable transaction
+                taxes for purchases made in certain tax jurisdictions.
               </p>
             </form>
           </div>
 
           {/* Right Section: Summary */}
           <div className="bg-white shadow-md rounded-lg p-6">
-            <h2 className="text-2xl font-semibold text-pink-500 mb-4">Summary</h2>
+            <h2 className="text-2xl font-semibold text-pink-500 mb-4">
+              Summary
+            </h2>
             <div className="space-y-4">
               <div className="flex justify-between">
                 <p className="text-gray-600 ">Original Price:</p>
-                <p className="font-medium dark:text-gray-600">${course.price}</p>
+                <p className="font-medium dark:text-gray-600">
+                  ${course.price}
+                </p>
               </div>
               {!course.isFree && (
                 <div className="flex justify-between">
@@ -132,7 +136,9 @@ const CoursePurchase = () => {
                 </div>
               )}
               <div className="flex justify-between border-t pt-4">
-                <p className="text-lg font-semibold dark:text-blue-600">Total (1 course):</p>
+                <p className="text-lg font-semibold dark:text-blue-600">
+                  Total (1 course):
+                </p>
                 <p className="text-lg font-semibold text-blue-600">
                   ${finalPrice}
                 </p>
@@ -148,8 +154,11 @@ const CoursePurchase = () => {
               .
             </p>
             <p className="text-sm text-gray-500 mt-2">
-              <strong className="text-pink-500">30-Day Money-Back Guarantee:</strong> Not satisfied? Get a
-              full refund within 30 days. No questions asked!
+              <strong className="text-pink-500">
+                30-Day Money-Back Guarantee:
+              </strong>{" "}
+              Not satisfied? Get a full refund within 30 days. No questions
+              asked!
             </p>
 
             {/* Payment Button */}
@@ -163,7 +172,6 @@ const CoursePurchase = () => {
         </div>
       </div>
       <Footer />
-      
     </>
   );
 };

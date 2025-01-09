@@ -3,7 +3,6 @@ import Home from "./home/Home";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Courses from "./assets/Courses/Courses";
 import SignUP from "./component/SignUP";
-
 import { Toaster } from "react-hot-toast";
 import { useAuth } from "./context/Authprovider";
 import Contact from "./component/Contact";
@@ -28,7 +27,7 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/About" element={<About />} />
           <Route path="/Course/:id" element={<CourseDetail />} />
-          
+
           <Route
             path="//purchase/:id"
             element={authUser ? <CoursePurchase /> : <Navigate to="/SignUp" />}
