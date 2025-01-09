@@ -63,6 +63,11 @@ function Nav() {
           About
         </a>
       </li>
+      <li>
+        <a href="/my-courses" className="hover:text-pink-500">
+          My Course
+        </a>
+      </li>
     </>
   );
   return (

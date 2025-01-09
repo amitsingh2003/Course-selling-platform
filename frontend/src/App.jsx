@@ -9,6 +9,7 @@ import Contact from "./component/Contact";
 import About from "./component/About";
 import CourseDetail from "./component/CourseDetail";
 import CoursePurchase from "./component/CoursePurchase";
+import YourCourse from "./component/YourCourse";
 
 function App() {
   const [authUser, setAuthUser] = useAuth();
@@ -27,12 +28,13 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/About" element={<About />} />
           <Route path="/Course/:id" element={<CourseDetail />} />
-
+          <Route path="/my-courses" element={<YourCourse />} />
           <Route
             path="//purchase/:id"
             element={authUser ? <CoursePurchase /> : <Navigate to="/SignUp" />}
           />
         </Routes>
+
         <Toaster />
       </div>
     </>
