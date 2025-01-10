@@ -10,7 +10,7 @@ function About_mat() {
 
   return (
     <>
-      <div className="min-h-screen bg-white flex items-center justify-center p-6 mt-16 dark:bg-slate-900 ">
+      <div className="min-h-screen bg-white flex items-center justify-center p-6 mt-16 dark:bg-slate-900 bg-gradient-to-br from-white to-pink-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* Header Section with Scroll Animation */}
           <div className="text-center mb-16" data-aos="fade-up">
