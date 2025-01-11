@@ -52,29 +52,6 @@ const EnhancedCoursePaid = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [visibleCourses, setVisibleCourses] = useState(6);
   const controls = useAnimation();
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-    return false;
-  });
-
-  useEffect(() => {
-    // Update dark mode class on document
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
-  useEffect(() => {
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e) => setDarkMode(e.matches);
-    mediaQuery.addListener(handleChange);
-    return () => mediaQuery.removeListener(handleChange);
-  }, []);
 
   useEffect(() => {
     AOS.init({
@@ -138,17 +115,6 @@ const EnhancedCoursePaid = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      {/* Theme Toggle Button */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setDarkMode(!darkMode)}
-        className="fixed top-4 right-4 p-3 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 
-                 shadow-lg hover:shadow-xl transition-all duration-300 z-50"
-      >
-        {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-      </motion.button>
-
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(20)].map((_, i) => (

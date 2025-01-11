@@ -55,7 +55,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative mt-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black text-gray-800 dark:text-white overflow-hidden transition-colors duration-300">
+    <footer className="relative  bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black text-gray-800 dark:text-white overflow-hidden transition-colors duration-300 border-t border-pink-500 dark:border-purple-500">
       {/* Animated Background Mesh */}
       <div
         className="absolute inset-0 opacity-10"
@@ -152,15 +152,14 @@ const Footer = () => {
             <h4 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 mb-6">
               Explore
             </h4>
-            {[
-              "All Courses",
-              "Learning Paths",
-              "Success Stories",
-              "Student Portal",
-            ].map((item) => (
+            {["Home", "Course", "Contact", "About"].map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                href={
+                  item === "Home"
+                    ? "/"
+                    : `/${item.toLowerCase().replace(/\s+/g, "-")}`
+                }
                 className="block text-gray-600 dark:text-gray-400 hover:text-pink-500 dark:hover:text-pink-400 transform hover:translate-x-2 transition-all duration-300"
               >
                 {item}
@@ -251,10 +250,10 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-200 dark:border-gray-800 pt-8 mt-8">
+        <div className="border-t border-purple-500 dark:border-pink-500 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              © {new Date().getFullYear()} SkillUp Academy. Empowering learners
+              © {new Date().getFullYear()} E-learn Academy. Empowering learners
               worldwide.
             </p>
             <button

@@ -12,26 +12,6 @@ const Banner = () => {
     window.location.href = "/Course";
   };
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   const statsData = [
     { icon: BookOpen, label: "1000+ Courses", color: "text-blue-500" },
     { icon: Target, label: "24/7 Support", color: "text-green-500" },
