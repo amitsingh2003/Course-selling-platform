@@ -6,3 +6,15 @@
 body{
   font-family: 'Poppins' , 'sans-serif';
 }
+.courses-slider .slick-track {
+  display: flex !important;
+  gap: 1rem;
+}
+
+.courses-slider .slick-slide {
+  height: inherit !important;
+}
+
+.courses-slider .slick-slide > div {
+  height: 100%;
+}
