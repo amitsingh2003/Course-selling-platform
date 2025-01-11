@@ -302,7 +302,7 @@ function SignUP() {
               onClick={() => document.getElementById("my_modal_3").showModal()}
               className="font-semibold text-purple-600 hover:text-purple-500 transition-colors duration-200"
             >
-              Sign in
+            Log In
             </button>
           </div>
         </form>

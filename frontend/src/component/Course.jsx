@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import {
-  Sparkles,
   BookOpen,
-  GraduationCap,
   ChevronLeft,
   ChevronRight,
+  
+  Trophy,
+  Brain,
 } from "lucide-react";
+
 import Card from "./Card";
 
 const CourseSection = () => {
@@ -109,6 +111,45 @@ const CourseSection = () => {
               </button>
             )}
 
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {[
+                {
+                  icon: BookOpen,
+                  title: "Popular Courses",
+                  desc: "Trending tech skills & certifications",
+                },
+                {
+                  icon: Brain,
+                  title: "Learn Anywhere",
+                  desc: "Access content on any device",
+                },
+                {
+                  icon: Trophy,
+                  title: "Get Certified",
+                  desc: "Industry-recognized credentials",
+                },
+              ].map(({ icon: Icon, title, desc }, index) => (
+                <div
+                  key={index}
+                  className="group relative p-6 rounded-2xl bg-white dark:bg-gray-800/50 backdrop-blur-lg 
+                         hover:shadow-[0_0_30px_rgba(219,39,119,0.2)] transform hover:-translate-y-2 transition-all duration-300
+                         border border-gray-200 dark:border-gray-700/50 hover:border-pink-500/50"
+                  style={{
+                    transformStyle: "preserve-3d",
+                    perspective: "1000px",
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
+                  <Icon className="w-10 h-10 text-pink-500 mb-4 transform group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+                    {title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-300 transition-colors duration-300">
+                    {desc}
+                  </p>
+                </div>
+              ))}
+            </div>
             {/* Course Container with Smooth Scroll */}
             <div
               id="course-container"

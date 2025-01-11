@@ -1,14 +1,44 @@
-import React, { useState } from "react";
-import { ArrowRight, BookOpen, Target, Trophy, Search } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import {
+  ArrowRight,
+  BookOpen,
+  Target,
+  Trophy,
+  Search,
+  MessageSquare,
+  X,
+} from "lucide-react";
 
 const Banner = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
-  // Handle navigation through regular anchor tag or custom handler
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) setIsChatOpen(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isChatOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isChatOpen]);
+
   const handleCourseNavigation = (e) => {
     e.preventDefault();
-    // You can replace this with your preferred navigation method
     window.location.href = "/Course";
   };
 
@@ -19,140 +49,202 @@ const Banner = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-pink-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden mt-16">
-      <div className="max-w-screen-2xl container mx-auto px-4 md:px-20 py-16">
-        <div className="flex flex-col md:flex-row items-center gap-16">
-          {/* Left Content */}
-          <div className="w-full md:w-1/2 space-y-10">
-            <div className="space-y-6">
-              <div
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-100 to-purple-100 
-                          dark:from-pink-900/30 dark:to-purple-900/30 rounded-full hover:scale-105 transition-transform duration-300"
-              >
-                <span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 
-                               font-semibold"
-                >
-                  Transforming Education
-                </span>
-              </div>
-
-              <h1 className="text-6xl md:text-7xl font-bold leading-tight">
-                Learn
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
-                  {" "}
-                  Anything{" "}
-                </span>
-                Anywhere
-              </h1>
-
-              <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                Unlock your potential with our cutting-edge learning platform.
-                Master new skills, achieve your goals, and shape your future.
-              </p>
-            </div>
-
-            {/* Search Bar */}
-            <div className="relative">
-              <div
-                className={`relative transition-all duration-300 ${
-                  isSearchFocused ? "scale-105" : ""
-                }`}
-              >
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setIsSearchFocused(true)}
-                  onBlur={() => setIsSearchFocused(false)}
-                  placeholder="Search for courses, topics, or skills..."
-                  className="w-full px-8 py-5 rounded-2xl border-2 border-gray-200 dark:border-gray-700 
-                           dark:bg-gray-800 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 
-                           dark:focus:ring-pink-900 transition-all duration-300 pr-16"
-                />
-                <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 w-6 h-6" />
-              </div>
-
-              {searchQuery && (
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-white to-pink-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden mt-16">
+        <div className="max-w-screen-2xl container mx-auto px-4 md:px-20 py-16">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            {/* Left Content */}
+            <div className="w-full md:w-1/2 space-y-10">
+              <div className="space-y-6">
                 <div
-                  className="absolute mt-2 w-full bg-white dark:bg-gray-800 rounded-xl shadow-xl 
-                             border border-gray-200 dark:border-gray-700 p-4 z-10"
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-100 to-purple-100 
+                            dark:from-pink-900/30 dark:to-purple-900/30 rounded-full hover:scale-105 transition-transform duration-300"
                 >
-                  <div className="text-sm text-gray-600 dark:text-gray-300">
-                    Popular searches: Web Development, Data Science, AI...
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/Course"
-                onClick={handleCourseNavigation}
-                className="px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 
-                         text-white rounded-xl font-medium flex items-center justify-center gap-2 
-                         hover:shadow-lg hover:shadow-pink-500/25 transition-all duration-300 
-                         transform hover:-translate-y-1 hover:scale-105 active:scale-95"
-              >
-                Explore Courses
-                <ArrowRight className="w-5 h-5" />
-              </a>
-
-              <button
-                className="px-8 py-4 border-2 border-gray-200 dark:border-gray-700 rounded-xl 
-                         font-medium hover:border-pink-500 dark:hover:border-pink-500 
-                         transition-all duration-300 hover:scale-105 active:scale-95"
-              >
-                View Demo
-              </button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6">
-              {statsData.map((stat, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl 
-                           shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                >
-                  <stat.icon className={`w-6 h-6 ${stat.color} mb-2`} />
-                  <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
-                    {stat.label}
+                  <span
+                    className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 
+                                 font-semibold"
+                  >
+                    Transforming Education
                   </span>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Right Content */}
-          <div className="w-full md:w-1/2">
-            <div className="relative">
-              <div
-                className="absolute -inset-4 bg-gradient-to-r from-pink-500 via-purple-500 
-                            to-indigo-500 rounded-3xl blur-3xl opacity-20"
-              >
-                <div className="w-full h-full animate-pulse" />
+                <h1 className="text-6xl md:text-7xl font-bold leading-tight">
+                  Learn
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+                    {" "}
+                    Anything{" "}
+                  </span>
+                  Anywhere
+                </h1>
+
+                <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Unlock your potential with our cutting-edge learning platform.
+                  Master new skills, achieve your goals, and shape your future.
+                </p>
               </div>
-              <img
-                src="/banner.png"
-                alt="E-Learning Platform"
-                className="relative w-full h-auto 
-                         transform hover:scale-105 transition-transform duration-300"
-              />
 
-              {/* Floating Elements */}
-              <div
-                className="absolute -right-8 top-1/4 bg-white dark:bg-gray-800 p-4 rounded-xl 
-                         shadow-xl animate-bounce"
-              >
-                <Trophy className="w-8 h-8 text-yellow-500" />
+              {/* Search Bar */}
+              <div className="relative">
+                <div
+                  className={`relative transition-all duration-300 ${
+                    isSearchFocused ? "scale-105" : ""
+                  }`}
+                >
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
+                    onBlur={() => setIsSearchFocused(false)}
+                    placeholder="Search for courses, topics, or skills..."
+                    className="w-full px-8 py-5 rounded-2xl border-2 border-gray-200 dark:border-gray-700 
+                             dark:bg-gray-800 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 
+                             dark:focus:ring-pink-900 transition-all duration-300 pr-16"
+                  />
+                  <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 w-6 h-6" />
+                </div>
+
+                {searchQuery && (
+                  <div
+                    className="absolute mt-2 w-full bg-white dark:bg-gray-800 rounded-xl shadow-xl 
+                               border border-gray-200 dark:border-gray-700 p-4 z-10"
+                  >
+                    <div className="text-sm text-gray-600 dark:text-gray-300">
+                      Popular searches: Web Development, Data Science, AI...
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="/Course"
+                  onClick={handleCourseNavigation}
+                  className="px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 
+                           text-white rounded-xl font-medium flex items-center justify-center gap-2 
+                           hover:shadow-lg hover:shadow-pink-500/25 transition-all duration-300 
+                           transform hover:-translate-y-1 hover:scale-105 active:scale-95"
+                >
+                  Explore Courses
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+
+                <button
+                  className="px-8 py-4 border-2 border-gray-200 dark:border-gray-700 rounded-xl 
+                           font-medium hover:border-pink-500 dark:hover:border-pink-500 
+                           transition-all duration-300 hover:scale-105 active:scale-95"
+                >
+                  View Demo
+                </button>
+
+                <button
+                  onClick={() => setIsChatOpen(true)}
+                  className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 
+                           text-white rounded-xl font-medium flex items-center justify-center gap-2 
+                           hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 
+                           transform hover:-translate-y-1 hover:scale-105 active:scale-95"
+                >
+                  <MessageSquare className="w-5 h-5" />
+                  Ask AI
+                </button>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-6">
+                {statsData.map((stat, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-xl 
+                             shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <stat.icon className={`w-6 h-6 ${stat.color} mb-2`} />
+                    <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Content */}
+            <div className="w-full md:w-1/2">
+              <div className="relative">
+                <div
+                  className="absolute -inset-4 bg-gradient-to-r from-pink-500 via-purple-500 
+                              to-indigo-500 rounded-3xl blur-3xl opacity-20"
+                >
+                  <div className="w-full h-full animate-pulse" />
+                </div>
+                <img
+                  src="/banner.png"
+                  alt="E-Learning Platform"
+                  className="relative w-full h-auto 
+                           transform hover:scale-105 transition-transform duration-300"
+                />
+
+                <div
+                  className="absolute -right-8 top-1/4 bg-white dark:bg-gray-800 p-4 rounded-xl 
+                           shadow-xl animate-bounce"
+                >
+                  <Trophy className="w-8 h-8 text-yellow-500" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Custom Chat Modal */}
+      {isChatOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div
+            className="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-lg h-[600px] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Chat Header */}
+            <div className="flex items-center justify-between p-4 border-b dark:border-gray-700">
+              <div className="flex items-center gap-2">
+                <MessageSquare className="w-5 h-5 text-blue-500" />
+                <h2 className="text-lg font-semibold">AI Assistant</h2>
+              </div>
+              <button
+                onClick={() => setIsChatOpen(false)}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Chat Messages */}
+            <div className="flex-1 overflow-y-auto p-4">
+              <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-lg mb-4 max-w-[80%]">
+                Hello! How can I help you with your learning journey today?
+              </div>
+            </div>
+
+            {/* Chat Input */}
+            <div className="p-4 border-t dark:border-gray-700">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Type your message..."
+                  className="flex-1 px-4 py-2 rounded-xl border-2 border-gray-200 dark:border-gray-700 
+                           dark:bg-gray-800 focus:border-blue-500 focus:ring-4 focus:ring-blue-200 
+                           dark:focus:ring-blue-900 transition-all duration-300"
+                />
+                <button
+                  className="px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 
+                                transition-colors duration-300"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
