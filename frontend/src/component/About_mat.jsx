@@ -1,225 +1,341 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React, { useEffect, useState } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { Link } from "react-router-dom";
+import {
+  BookOpen,
+  Users,
+  Trophy,
+  Star,
+  Building,
+  Globe,
+  GraduationCap,
+  Clock,
+  Award,
+  Heart,
+  Target,
+  Rocket,
+  Check,
+  MapPin,
+  Calendar,
+  Briefcase,
+} from "lucide-react";
 
-function About_mat() {
+const AboutSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+
+    const section = document.querySelector(".about-section");
+    if (section) observer.observe(section);
+    return () => section && observer.unobserve(section);
   }, []);
 
+  const impactStats = [
+    { icon: Users, value: "100K+", label: "Active Learners" },
+    { icon: BookOpen, value: "500+", label: "Courses" },
+    { icon: Building, value: "12", label: "Global Offices" },
+    { icon: Star, value: "4.9", label: "Average Rating" },
+  ];
+
   return (
-    <>
-      <div className="min-h-screen bg-white flex items-center justify-center p-6 mt-16 dark:bg-slate-900 bg-gradient-to-br from-white to-pink-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          {/* Header Section with Scroll Animation */}
-          <div className="text-center mb-16" data-aos="fade-up">
-            {/* Title */}
-            <h2 className="text-5xl font-extrabold text-pink-500">
-              Welcome to Our World of Learning
-            </h2>
+    <div className="relative min-h-screen about-section">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 opacity-50" />
 
-            {/* Subsection with Image and Description */}
-            <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-8">
-              {/* Left: About the Platform */}
-              <div className="text-left max-w-lg">
-                <h3 className="text-3xl font-bold text-gray-700 dark:text-white"></h3>
-                <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Necessitatibus suscipit est quo maxime delectus magnam
-                  corrupti excepturi libero! Deserunt ab eos rerum provident
-                  quidem tempora mollitia magni placeat repudiandae
-                  obcaecati.Lorem ipsum dolor sit, amet consectetur adipisicing
-                  elit. Necessitatibus suscipit est quo maxime delectus magnam
-                  corrupti excepturi libero.
-                </p>
-              </div>
+      {/* Main Content */}
+      <div className="relative max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        {/* Hero Section - Our Story */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-24"
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+            className="inline-flex p-3 mb-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full shadow-lg"
+          >
+            <Heart className="w-6 h-6 text-white" />
+          </motion.div>
 
-              {/* Right: Image */}
-              <div>
-                <img
-                  src="https://www.pngarts.com/files/7/Online-Education-PNG-Transparent-Image.png"
-                  alt="Learning Illustration"
-                  className="w-full max-w-sm  p-0 m-0"
-                />
-              </div>
-            </div>
+          <h1 className="text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+            Empowering Dreams Through Education
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
+            Founded in 2020, EduPlatform emerged from a simple yet powerful
+            vision: making quality education accessible to everyone, everywhere.
+            What started as a small team of passionate educators has grown into
+            a global community of learners and experts united by the goal of
+            democratizing education.
+          </p>
+
+          {/* Mission & Vision Cards */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="p-8 bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-xl backdrop-blur-sm"
+            >
+              <h3 className="text-2xl font-bold text-purple-500 mb-4">
+                Our Mission
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                To break down barriers to education by providing affordable,
+                accessible, and high-quality learning experiences that empower
+                individuals to achieve their full potential.
+              </p>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="p-8 bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-xl backdrop-blur-sm"
+            >
+              <h3 className="text-2xl font-bold text-pink-500 mb-4">
+                Our Vision
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                To create a world where quality education knows no boundaries,
+                enabling millions to transform their lives through learning and
+                skill development.
+              </p>
+            </motion.div>
           </div>
+        </motion.div>
 
-          {/* Features Section with Scroll Animation */}
-          <div className="grid grid-cols-1  mb-16">
-            {/* First Feature (Content on Right, Image on Left) */}
-            <div
-              className="  p-8 rounded-xl  text-center flex flex-col md:flex-row items-center"
-              data-aos="zoom-in"
-            >
-              {/* Image on Left */}
-              <div className="w-full md:w-1/2">
-                <img
-                  src="https://cdn3d.iconscout.com/3d/premium/thumb/student-studying-on-laptop-while-sitting-on-big-books-5711045-4779537.png"
-                  alt="High-Quality Education"
-                  className="w-full max-w-sm p-0 m-0"
-                />
-              </div>
-
-              {/* Content on Right */}
-              <div className="text-left w-full md:w-1/2 mt-1 md:mt-0">
-                <h3 className="text-7xl font-semibold text-pink-500">
-                  High Quality Education
-                </h3>
-                <p className="mt-2 text-gray-500 text-1xl  dark:text-white">
-                  Learn from top instructors with a focus on quality and
-                  expertise.
-                </p>
-              </div>
-            </div>
-
-            {/* Second Feature (Image on Right, Content on Left) */}
-            <div
-              className="p-8 rounded-xl  text-center flex flex-col-reverse md:flex-row-reverse items-center"
-              data-aos="zoom-in"
-            >
-              {/* Image on Right */}
-              <div className="w-full md:w-1/2">
-                <img
-                  src="https://cdn3d.iconscout.com/3d/premium/thumb/schoolgirl-learning-from-online-teacher-7572460-6174900.png"
-                  alt="Expert Educators"
-                  className="w-full max-w-sm p-0 m-0"
-                />
-              </div>
-
-              {/* Content on Left */}
-              <div className="text-left w-full md:w-1/2 mt-1 md:mt-0">
-                <h3 className="text-7xl font-semibold text-pink-500">
-                  Expert Educators
-                </h3>
-                <p className="mt-2 text-gray-500 text-1xl dark:text-white">
-                  Our educators are pioneers in their fields, ready to guide
-                  you.
-                </p>
-              </div>
-            </div>
-
-            {/* Third Feature (Content on Right, Image on Left) */}
-            <div
-              className=" p-8 rounded-xl  text-center flex flex-col md:flex-row items-center"
-              data-aos="zoom-in"
-            >
-              {/* Image on Left */}
-              <div className="w-full md:w-1/2">
-                <img
-                  src="https://static.vecteezy.com/system/resources/previews/009/312/916/original/student-showing-thumbs-up-3d-illustration-chartoon-character-cute-boy-png.png"
-                  alt="Student-Centered Learning"
-                  className="w-full max-w-sm p-0 m-0"
-                />
-              </div>
-
-              {/* Content on Right */}
-              <div className="text-left w-full md:w-1/2 mt-1 md:mt-0">
-                <h3 className="text-6xl font-semibold text-pink-500">
-                  Student Centered Learning
-                </h3>
-                <p className="mt-2 text-gray-500 text-1xl  dark:text-white">
-                  We prioritize student success with interactive and practical
-                  learning.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Educators Section with Scroll Animation */}
-          <div className="text-center mb-16" data-aos="fade-up">
-            <h2 className="text-4xl font-extrabold text-pink-500 mb-8">
-              Meet Our Top Educators
-            </h2>
-            <div className="grid md:grid-cols-3 gap-12">
-              {/* Educator 1 */}
-              <div
-                className="h-[16em] w-[18em] border-2 border-[rgba(255,105,180,0.5)] rounded-[1.5em] bg-gradient-to-br from-[rgba(255,105,180,1)] to-[rgba(255,182,193,0.01)] text-white font-nunito p-[1em] flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px] shadow-xl transform transition-all hover:scale-105"
-                data-aos="flip-left"
+        {/* Impact Statistics */}
+        <motion.div
+          className="mb-24"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.2 },
+            },
+          }}
+          initial="hidden"
+          animate="show"
+        >
+          <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+            Our Global Impact
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {impactStats.map((stat, index) => (
+              <motion.div
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                className="relative group"
               >
-                <img
-                  src="https://th.bing.com/th/id/OIP.k3ZfVJqxkc64MlyWaJp5JAHaHa?rs=1&pid=ImgDetMain"
-                  alt="John Doe"
-                  className="w-24 h-24 rounded-full mx-auto transition-all duration-500 transform hover:scale-110"
-                />
-                <h3 className="text-[1.5em] font-medium text-center mt-4">
-                  John Doe
-                </h3>
-                <p className="text-[0.85em] text-center">
-                  Digital Marketing Expert
-                </p>
-              </div>
-              {/* Educator 2 */}
-              <div
-                className="h-[16em] w-[18em] border-2 border-[rgba(255,105,180,0.5)] rounded-[1.5em] bg-gradient-to-br from-[rgba(255,105,180,1)] to-[rgba(255,182,193,0.01)] text-white font-nunito p-[1em] flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px] shadow-xl transform transition-all hover:scale-105"
-                data-aos="flip-left"
-              >
-                <img
-                  src="https://th.bing.com/th/id/R.23a8b92e408d77554077f39acf8a9a01?rik=mHY4QSDf8Bq48w&riu=http%3a%2f%2fww1.prweb.com%2fprfiles%2f2018%2f06%2f19%2f15574951%2f16114837_10154855433134360_7166660686350361752_n.jpg&ehk=2lD5JqWRhnRO7t9gfJivP%2boK7B%2baodCm1knjm0ruEl0%3d&risl=&pid=ImgRaw&r=0"
-                  alt="Jane Smith"
-                  className="w-24 h-24 rounded-full mx-auto transition-all duration-500 transform hover:scale-110"
-                />
-                <h3 className="text-[1.5em] font-medium text-center mt-4">
-                  Jane Smith
-                </h3>
-                <p className="text-[0.85em] text-center">
-                  Data Science Specialist
-                </p>
-              </div>
-              {/* Educator 3 */}
-              <div
-                className="h-[16em] w-[18em] border-2 border-[rgba(255,105,180,0.5)] rounded-[1.5em] bg-gradient-to-br from-[rgba(255,105,180,1)] to-[rgba(255,182,193,0.01)] text-white font-nunito p-[1em] flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px] shadow-xl transform transition-all hover:scale-105"
-                data-aos="flip-left"
-              >
-                <img
-                  src="https://th.bing.com/th/id/OIP.H5THO9hrKv2Cc5CWQkIQRwHaHa?rs=1&pid=ImgDetMain"
-                  alt="Emily Johnson"
-                  className="w-24 h-24 rounded-full mx-auto transition-all duration-500 transform hover:scale-110"
-                />
-                <h3 className="text-[1.5em] font-medium text-center mt-4">
-                  Emily Johnson
-                </h3>
-                <p className="text-[0.85em] text-center">
-                  Creative Writing Instructor
-                </p>
-              </div>
-            </div>
+                <div className="p-6 bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-lg backdrop-blur-sm transform transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-2">
+                  <stat.icon className="w-8 h-8 mx-auto mb-4 text-purple-500" />
+                  <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                    {stat.value}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {stat.label}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
+        </motion.div>
 
-          {/* Ratings Section with Scroll Animation */}
-          <div className="text-center mb-16" data-aos="fade-up">
-            <h2 className="text-4xl font-extrabold text-pink-500">
-              Student Ratings
-            </h2>
-            <div className="flex justify-center mt-8">
-              <div className="flex items-center">
-                <span className="text-2xl text-yellow-500">★★★★★</span>
-                <span className="ml-2 text-xl text-gray-600">(4.9/5)</span>
-              </div>
-            </div>
+        {/* What Sets Us Apart */}
+        <motion.div className="mb-24">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+            What Sets Us Apart
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            {[
+              {
+                title: "Industry-Leading Expertise",
+                description:
+                  "Our courses are crafted and taught by recognized experts, ensuring you learn from the best in each field. Our instructors come from top companies like Google, Amazon, and Microsoft.",
+                icon: Trophy,
+                gradient: "from-purple-500 to-pink-500",
+              },
+              {
+                title: "Practical Learning Approach",
+                description:
+                  "Every course combines theoretical knowledge with real-world applications, featuring hands-on projects, case studies, and industry-relevant assignments.",
+                icon: Target,
+                gradient: "from-pink-500 to-purple-500",
+              },
+              {
+                title: "Career Support",
+                description:
+                  "Beyond courses, we offer career guidance, resume reviews, interview preparation, and direct connections to industry opportunities through our partner network.",
+                icon: Briefcase,
+                gradient: "from-indigo-500 to-purple-500",
+              },
+              {
+                title: "Flexible Learning",
+                description:
+                  "Learn at your own pace with lifetime access to course materials, mobile-friendly content, and downloadable resources for offline learning.",
+                icon: Clock,
+                gradient: "from-purple-500 to-indigo-500",
+              },
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.02 }}
+                className="p-8 bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-xl backdrop-blur-sm"
+              >
+                <div
+                  className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${feature.gradient} shadow-lg mb-6`}
+                >
+                  <feature.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
+        </motion.div>
 
-          {/* Call to Action Section */}
-          <div className="text-center mb-16" data-aos="fade-up">
-            <h2 className="text-4xl font-extrabold text-pink-500">
-              Join Us Today!
-            </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              Start your learning journey with us and explore endless
-              opportunities.
-            </p>
-            <Link
-              to="/SignUp"
-              className="mt-6 inline-block bg-pink-500 text-white text-lg font-semibold py-3 px-8 rounded-lg hover:bg-pink-600 transition-all"
-            >
-              SignUp Now
-            </Link>
+        {/* Global Presence */}
+        <motion.div className="mb-24">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+            Our Global Presence
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                city: "San Francisco",
+                country: "United States",
+                role: "Global Headquarters",
+                team: "150+ employees",
+              },
+              {
+                city: "London",
+                country: "United Kingdom",
+                role: "European Hub",
+                team: "100+ employees",
+              },
+              {
+                city: "Singapore",
+                country: "Singapore",
+                role: "Asia Pacific Center",
+                team: "80+ employees",
+              },
+            ].map((office, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="p-6 bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-xl backdrop-blur-sm"
+              >
+                <MapPin className="w-6 h-6 text-purple-500 mb-4" />
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {office.city}, {office.country}
+                </h3>
+                <p className="text-purple-500 font-medium mb-2">
+                  {office.role}
+                </p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {office.team}
+                </p>
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </motion.div>
+
+        {/* Our Journey Timeline */}
+        <motion.div className="mb-24">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+            Our Journey
+          </h2>
+          <div className="space-y-12">
+            {[
+              {
+                year: "2020",
+                title: "The Beginning",
+                description:
+                  "Started with a team of 5 passionate educators and 10 courses",
+              },
+              {
+                year: "2021",
+                title: "Rapid Growth",
+                description:
+                  "Expanded to 100+ courses and reached 50,000 students globally",
+              },
+              {
+                year: "2022",
+                title: "Global Expansion",
+                description:
+                  "Opened offices in 5 countries and launched enterprise solutions",
+              },
+              {
+                year: "2023",
+                title: "Innovation Leader",
+                description:
+                  "Introduced AI-powered learning paths and mobile learning solutions",
+              },
+            ].map((milestone, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.02 }}
+                className="flex items-start space-x-6"
+              >
+                <div className="flex-shrink-0 w-24">
+                  <div className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white text-center font-bold">
+                    {milestone.year}
+                  </div>
+                </div>
+                <div className="flex-grow p-6 bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-xl backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    {milestone.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {milestone.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Join Us CTA */}
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+            Be Part of Our Story
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            Join our global community of learners and start your journey towards
+            success today.
+          </p>
+          <Link
+            to="/SignUp"
+            className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-purple-500 rounded-full shadow-lg hover:scale-105 transition-all duration-300"
+          >
+            Start Learning Now
+            <Rocket className="ml-2 w-5 h-5" />
+          </Link>
+        </motion.div>
       </div>
-    </>
+    </div>
   );
-}
+};
 
-export default About_mat;
+export default AboutSection;
