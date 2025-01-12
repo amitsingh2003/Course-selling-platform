@@ -50,7 +50,7 @@ const EnhancedCourseSection = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await axios.get("https://course-selling-platform.onrender.com/book");
+        const res = await axios.get("http://localhost:5001/book");
         const freeCourses = res.data.filter((data) => data.category === "free");
         setCourses(freeCourses);
         setIsLoading(false);
