@@ -70,7 +70,7 @@ function SignUP() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5001/user/signup", {
+      const response = await fetch("https://course-selling-platform.onrender.com/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
