@@ -174,7 +174,7 @@ const EnhancedCourseSection = () => {
 
           {/* Stats Section */}
           <motion.div
-            className="grid grid-cols-3 gap-8 mt-12 max-w-3xl mx-auto"
+            className="grid grid-cols-1  md:grid-cols-3 gap-8 mt-12 max-w-3xl mx-auto"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: {
