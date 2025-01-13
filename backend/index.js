@@ -10,7 +10,7 @@ import userRoute from "./route/user.route.js";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT ;
 const muri = process.env.URI;
 
 // Initialize Google Generative AI
@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 // CORS configuration
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:3000"], // Add your frontend URL
+    origin: ["http://localhost:5175", "http://localhost:3000" , "http://localhost:5173"], // Add your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -43,9 +43,16 @@ app.use((err, req, res, next) => {
 
 // Connect to MongoDB
 mongoose
-  .connect(muri)
+  .connect(muri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB connected"))
-  .catch((error) => console.error("Error connecting to MongoDB:", error));
+  .catch((error) => {
+    console.error("Error connecting to MongoDB:", error);
+    process.exit(1); // Exit process if MongoDB fails to connect
+  });
+
 
 // Health check route
 app.get("/health", (req, res) => {
