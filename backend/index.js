@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 // CORS configuration
 app.use(
   cors({
-    origin: ["http://localhost:5175", "http://localhost:3000" , "http://localhost:5173"], // Add your frontend URL
+    origin: ["http://localhost:3000" , "https://course-selling-platform-ixesp253z-amit-singhs-projects-257d1347.vercel.app" ], // Add your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
