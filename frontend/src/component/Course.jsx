@@ -50,7 +50,9 @@ const EnhancedCourseSection = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await axios.get("https://course-selling-platform-b.onrender.com/book");
+        const res = await axios.get(
+          "https://course-selling-platform-b.onrender.com/book"
+        );
         const freeCourses = res.data.filter((data) => data.category === "free");
         setCourses(freeCourses);
         setIsLoading(false);
@@ -284,6 +286,7 @@ const EnhancedCourseSection = () => {
         </motion.div>
 
         {/* Courses Section with Enhanced Loading State */}
+        {/* Courses Section with Enhanced Loading State */}
         {isLoading ? (
           <motion.div
             className="flex flex-col items-center justify-center h-64 space-y-4"
@@ -314,40 +317,42 @@ const EnhancedCourseSection = () => {
             animate={{ opacity: 1 }}
             className="relative group"
           >
-            {/* Enhanced Scroll Buttons */}
-            <AnimatePresence>
-              {showLeftScroll && (
-                <motion.button
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  onClick={() => scroll("left")}
-                  className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-white/90 
-                           dark:bg-gray-800/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 
-                           transition-all duration-300 hover:scale-110 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </motion.button>
-              )}
-              {showRightScroll && (
-                <motion.button
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  onClick={() => scroll("right")}
-                  className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-white/90 
-                           dark:bg-gray-800/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 
-                           transition-all duration-300 hover:scale-110 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500 hover:text-white"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </motion.button>
-              )}
-            </AnimatePresence>
+            {/* Enhanced Scroll Buttons - Hide on mobile */}
+            <div className="hidden md:block">
+              <AnimatePresence>
+                {showLeftScroll && (
+                  <motion.button
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    onClick={() => scroll("left")}
+                    className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-white/90 
+                             dark:bg-gray-800/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 
+                             transition-all duration-300 hover:scale-110 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </motion.button>
+                )}
+                {showRightScroll && (
+                  <motion.button
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    onClick={() => scroll("right")}
+                    className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-white/90 
+                             dark:bg-gray-800/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 
+                             transition-all duration-300 hover:scale-110 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500 hover:text-white"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </motion.button>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* Enhanced Course Cards Container */}
             <div
               id="course-container"
-              className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-6 
+              className="flex gap-4 md:gap-6 lg:gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-6 
                        scrollbar-none hover:scrollbar-thin hover:scrollbar-track-transparent 
                        hover:scrollbar-thumb-gray-300 dark:hover:scrollbar-thumb-gray-600"
               onScroll={handleScroll}
@@ -360,7 +365,9 @@ const EnhancedCourseSection = () => {
                 {courses.map((course, index) => (
                   <motion.div
                     key={course.id}
-                    className="min-w-[calc(33.333%-1.33rem)] w-[calc(33.333%-1.33rem)] snap-start snap-always perspective-1000"
+                    className="min-w-full xs:min-w-[calc(100%-1rem)] sm:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.33rem)] 
+                             w-full xs:w-[calc(100%-1rem)] sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)]
+                             snap-start snap-always perspective-1000"
                     initial={{ opacity: 0, y: 30, rotateX: -20 }}
                     animate={{
                       opacity: 1,
@@ -387,6 +394,13 @@ const EnhancedCourseSection = () => {
                   </motion.div>
                 ))}
               </AnimatePresence>
+            </div>
+
+            {/* Mobile Scroll Indicator */}
+            <div className="flex justify-center mt-4 gap-2 md:hidden">
+              <div className="h-1 w-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-50" />
+              <div className="h-1 w-4 bg-gray-300 dark:bg-gray-700 rounded-full" />
+              <div className="h-1 w-4 bg-gray-300 dark:bg-gray-700 rounded-full" />
             </div>
           </motion.div>
         )}
