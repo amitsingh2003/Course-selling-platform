@@ -37,8 +37,8 @@ const Login = () => {
     setIsLoading(true);
     setError("");
 
-    try {
-      const response = await fetch("http://localhost:5001/user/login", {
+    try {                           
+      const response = await fetch('https://course-selling-platform-b.onrender.com/user/login', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,0 +1,176 @@
+[{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe635"
+  },
+  "id": 1,
+  "name": "Mern stack",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 0,
+  "category": "free",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe636"
+  },
+  "id": 2,
+  "name": "DSA in c++",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 0,
+  "category": "free",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe637"
+  },
+  "id": 3,
+  "name": "Operating Systems",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 0,
+  "category": "free",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe638"
+  },
+  "id": 4,
+  "name": "DBMS",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 0,
+  "category": "free",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe639"
+  },
+  "id": 5,
+  "name": "Computer Networks",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 0,
+  "category": "free",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe63a"
+  },
+  "id": 6,
+  "name": "Software Engineering",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 0,
+  "category": "free",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe63b"
+  },
+  "id": 7,
+  "name": "Artificial Intelligence",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 300,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe63c"
+  },
+  "id": 8,
+  "name": "Machine Learning",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 30,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe63d"
+  },
+  "id": 9,
+  "name": "Cybersecurity",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 25,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe63e"
+  },
+  "id": 10,
+  "name": "Cloud Computing",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 140,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe63f"
+  },
+  "id": 11,
+  "name": "Computer Interaction",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 290,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe640"
+  },
+  "id": 12,
+  "name": "Theory of Computation",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 430,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe641"
+  },
+  "id": 13,
+  "name": "Compiler Design",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 240,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe642"
+  },
+  "id": 14,
+  "name": "Distributed Systems",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 250,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe643"
+  },
+  "id": 15,
+  "name": "Big Data",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 190,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+},
+{
+  "_id": {
+    "$oid": "6767f78518b26d3f6dbbe644"
+  },
+  "id": 16,
+  "name": "Computer Graphics",
+  "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit Beatae",
+  "price": 200,
+  "category": "paid",
+  "image": "https://www.skypotential.com/wp-content/uploads/2021/03/MERN_stack_03.png"
+}]
