@@ -70,13 +70,16 @@ function SignUP() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://course-selling-platform-b.onrender.com/user/signup', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://course-selling-platform-b.onrender.com/user/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
 
@@ -102,17 +105,17 @@ function SignUP() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex  items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white rounded-2xl shadow-xl p-8 relative">
         <Link
           to="/"
-          className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-100 transition-all duration-200"
+          className="absolute right-4 top-4 p-2 rounded-full hover:bg-purple-100 transition-all duration-200"
         >
-          <X className="h-5 w-5 text-gray-500" />
+          <X className="h-5 w-5 text-pink-500" />
         </Link>
 
         <div>
-          <h2 className="mt-4 text-center text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
+          <h2 className="mt-4 text-center text-3xl font-extrabold  bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent ">
             Create Account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
@@ -138,7 +141,7 @@ function SignUP() {
                 required
                 value={formData.fullname}
                 onChange={handleInputChange}
-                className="appearance-none block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
+                className="appearance-none dark:text-slate-900  block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                 placeholder="John Doe"
               />
             </div>
@@ -161,7 +164,7 @@ function SignUP() {
                 required
                 value={formData.email}
                 onChange={handleInputChange}
-                className="appearance-none block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
+                className="appearance-none block dark:text-slate-900 w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                 placeholder="john@example.com"
               />
             </div>
@@ -184,7 +187,7 @@ function SignUP() {
                 required
                 value={formData.password}
                 onChange={handleInputChange}
-                className="appearance-none block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
+                className="appearance-none block w-full dark:text-slate-900 pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                 placeholder="••••••••"
               />
             </div>
@@ -279,7 +282,7 @@ function SignUP() {
               className={`group relative w-full flex justify-center py-3 px-4 border border-transparent rounded-lg text-white 
                 ${
                   passwordStrength.score >= 3
-                    ? "bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600"
+                    ? "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-700 hover:to-purple-600 transition-all duration-200"
                     : "bg-gray-400 cursor-not-allowed"
                 } 
                 transition-all duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500`}
@@ -302,7 +305,7 @@ function SignUP() {
               onClick={() => document.getElementById("my_modal_3").showModal()}
               className="font-semibold text-purple-600 hover:text-purple-500 transition-colors duration-200"
             >
-            Log In
+              Log In
             </button>
           </div>
         </form>
