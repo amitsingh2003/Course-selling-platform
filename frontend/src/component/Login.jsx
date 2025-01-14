@@ -37,17 +37,20 @@ const Login = () => {
     setIsLoading(true);
     setError("");
 
-    try {                           
-      const response = await fetch('https://course-selling-platform-b.onrender.com/user/login', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+    try {
+      const response = await fetch(
+        "https://course-selling-platform-b.onrender.com/user/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -70,21 +73,21 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div >
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box max-w-md bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-2xl p-8">
-          <div className="relative">
+        <div className="modal-box max-w-md  bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-2xl p-8 ">
+          <div className="relative ">
             {/* Close Button */}
             <button
               onClick={() => document.getElementById("my_modal_3").close()}
-              className="absolute right-0 top-0 p-2 rounded-full hover:bg-gray-100 transition-all duration-200"
+              className="absolute right-0 top-0 p-2 rounded-full hover:bg-purple-100 transition-all duration-200"
             >
-              <X className="w-5 h-5 text-gray-500" />
+              <X className="w-5 h-5 text-pink-500" />
             </button>
 
             {/* Header */}
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
+            <div className="text-center mb-8 ">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Welcome Back
               </h2>
               <p className="text-gray-600 mt-2">
@@ -130,7 +133,7 @@ const Login = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
+                    className="w-full pl-10 pr-4 dark:text-gray-800 py-2.5 border border-purple-500 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                     placeholder="name@example.com"
                     required
                   />
@@ -153,7 +156,7 @@ const Login = () => {
                     name="password"
                     value={formData.password}
                     onChange={handleInputChange}
-                    className="w-full pl-10 pr-12 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
+                    className="w-full pl-10 pr-12 dark:text-gray-800 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                     placeholder="Enter your password"
                     required
                   />
@@ -201,13 +204,15 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full flex items-center justify-center py-3 px-4 rounded-lg text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200"
               >
                 {isLoading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
                 ) : (
                   <>
-                    Sign in
+                    Log In
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </>
                 )}
@@ -229,19 +234,19 @@ const Login = () => {
                 <div className="mt-6 grid grid-cols-3 gap-3">
                   <button
                     type="button"
-                    className="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all duration-200"
+                    className="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-purple-500 hover:bg-purple-50 hover:text-pink-500 hover:bor transition-all duration-200"
                   >
                     <Github className="h-5 w-5" />
                   </button>
                   <button
                     type="button"
-                    className="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all duration-200"
+                    className="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-purple-500 hover:bg-purple-50 hover:text-pink-500 transition-all duration-200"
                   >
                     <Twitter className="h-5 w-5" />
                   </button>
                   <button
                     type="button"
-                    className="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all duration-200"
+                    className="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-purple-500 hover:bg-purple-50 hover:text-pink-500 transition-all duration-200"
                   >
                     <Facebook className="h-5 w-5" />
                   </button>
