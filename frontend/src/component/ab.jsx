@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import {
   BookOpen,
   Clock,
+  Star,
+  User,
   PlayCircle,
   GraduationCap,
   Download,
@@ -11,6 +13,7 @@ import {
   ShoppingCart,
   ChevronDown,
   Award,
+  Users,
   Calendar,
   Check,
   Lock,
@@ -20,6 +23,7 @@ import {
   Share2,
   Bookmark,
   Heart,
+  ThumbsUp,
   Coffee,
   Target,
   Layout,
@@ -27,6 +31,7 @@ import {
   Trophy,
   HelpCircle,
   Medal,
+  Certificate,
   Lightbulb,
   Timer,
   Gift,
@@ -41,118 +46,24 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "./Footer";
 import Nav from "./Nav";
-import {
-  User,
-  Users,
-  UserCircle,
-  UserCheck,
-  Star,
-  ThumbsUp,
-} from "lucide-react";
 
 const CourseDetail = () => {
   const { state } = useLocation();
   const { id } = useParams();
   const course = state?.course;
   const navigate = useNavigate();
-
   const [activeTopic, setActiveTopic] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeTab, setActiveTab] = useState("content");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const videoRef = useRef(null);
   const [showAchievement, setShowAchievement] = useState(false);
   const [selectedFaq, setSelectedFaq] = useState(null);
-  const [userProgress, setUserProgress] = useState(35);
+  const [userProgress, setUserProgress] = useState(35); // Mock progress
+  const [showCertificatePreview, setShowCertificatePreview] = useState(false);
   const [activeChallenge, setActiveChallenge] = useState(null);
-  const videoRef = useRef(null);
-
-  const courseStats = [
-    { icon: <Users className="w-5 h-5" />, label: "Enrolled", value: "12,345" },
-    {
-      icon: <Clock className="w-5 h-5" />,
-      label: "Duration",
-      value: "12 weeks",
-    },
-    { icon: <Book className="w-5 h-5" />, label: "Lessons", value: "50+" },
-    {
-      icon: <MessageCircle className="w-5 h-5" />,
-      label: "Languages",
-      value: "3",
-    },
-    {
-      icon: <Target className="w-5 h-5" />,
-      label: "Level",
-      value: "All Levels",
-    },
-  ];
-
-  const learningOutcomes = [
-    "Master fundamental concepts and best practices in software development",
-    "Build real-world applications using modern technologies",
-    "Implement secure and scalable solutions",
-    "Write clean, maintainable, and efficient code",
-    "Debug and troubleshoot common programming issues",
-    "Work with databases and handle data effectively",
-    "Understand design patterns and architectural principles",
-    "Deploy applications to production environments",
-    "Collaborate effectively using version control systems",
-    "Apply test-driven development practices",
-    "Optimize application performance",
-    "Create responsive and user-friendly interfaces",
-  ];
-
-  const syllabus = [
-    {
-      title: "Getting Started",
-      duration: "2 hours",
-      lessons: [
-        {
-          title: "Course Overview",
-          duration: "15 min",
-          type: "video",
-          free: true,
-        },
-        {
-          title: "Setting Up Environment",
-          duration: "30 min",
-          type: "lab",
-          free: true,
-        },
-        {
-          title: "Basic Concepts",
-          duration: "45 min",
-          type: "video",
-          free: false,
-        },
-      ],
-    },
-    {
-      title: "Core Fundamentals",
-      duration: "4 hours",
-      lessons: [
-        {
-          title: "Key Principles",
-          duration: "1 hour",
-          type: "video",
-          free: false,
-        },
-        {
-          title: "Hands-on Practice",
-          duration: "2 hours",
-          type: "lab",
-          free: false,
-        },
-        {
-          title: "Real-world Examples",
-          duration: "1 hour",
-          type: "video",
-          free: false,
-        },
-      ],
-    },
-  ];
 
   // New achievement data
   const achievements = [
@@ -182,57 +93,6 @@ const CourseDetail = () => {
       progress: 7,
       total: 10,
       reward: "Community Badge",
-    },
-  ];
-
-  const reviews = [
-    {
-      user: "John Smith",
-      icon: "User", // We'll use different Lucide icons for each user
-      date: "2 weeks ago",
-      rating: 5,
-      comment:
-        "This course exceeded my expectations. The content is well-structured and the instructor explains complex concepts in a very understandable way.",
-    },
-    {
-      user: "Emma Wilson",
-      icon: "Users",
-      date: "1 month ago",
-      rating: 4,
-      comment:
-        "Great course overall. The practical examples really helped cement my understanding. Would recommend to others looking to learn this subject.",
-    },
-    {
-      user: "Michael Brown",
-      icon: "UserCircle",
-      date: "2 months ago",
-      rating: 5,
-      comment:
-        "The instructor's teaching style is engaging and the course projects are very practical. I've already started applying what I learned in my work.",
-    },
-    {
-      user: "Sarah Davis",
-      icon: "User",
-      date: "3 months ago",
-      rating: 4,
-      comment:
-        "Very comprehensive course material. The hands-on exercises were particularly helpful in understanding the concepts.",
-    },
-    {
-      user: "David Lee",
-      icon: "UserCheck",
-      date: "3 months ago",
-      rating: 5,
-      comment:
-        "Outstanding course! The instructor's expertise really shines through. The pace was perfect and the content was up-to-date.",
-    },
-    {
-      user: "Lisa Anderson",
-      icon: "UserCircle",
-      date: "4 months ago",
-      rating: 4,
-      comment:
-        "Well-structured content with good examples. Would have loved more advanced topics, but overall a solid foundation course.",
     },
   ];
 
@@ -286,6 +146,7 @@ const CourseDetail = () => {
     { id: 2, title: "Advanced Concepts", completed: true },
     { id: 3, title: "Real-world Projects", completed: false },
     { id: 4, title: "Expert Techniques", completed: false },
+    { id: 5, title: "Final Certification", completed: false },
   ];
 
   // Add new section to render achievements
@@ -465,67 +326,6 @@ const CourseDetail = () => {
         ))}
       </div>
     </motion.div>
-  );
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const currentProgress = (window.scrollY / totalScroll) * 100;
-      setScrollProgress(currentProgress);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Error handling for missing course data
-  if (!course) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center space-y-6"
-        >
-          <Award className="w-24 h-24 text-pink-500 mx-auto animate-bounce" />
-          <h2 className="text-3xl font-bold text-gray-700 dark:text-gray-300">
-            Course Not Found
-          </h2>
-          <p className="text-gray-500 dark:text-gray-400 max-w-md">
-            The course you're looking for might have been moved or doesn't
-            exist.
-          </p>
-          <button
-            onClick={() => navigate("/courses")}
-            className="px-6 py-2 bg-transparent border-2 border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-all duration-300"
-          >
-            Browse Courses
-          </button>
-        </motion.div>
-      </div>
-    );
-  }
-
-  const TabButton = ({ active, onClick, children }) => (
-    <button
-      onClick={onClick}
-      className={`px-6 py-3 rounded-lg transition-all duration-300 ${
-        active
-          ? "bg-pink-500 text-white shadow-lg"
-          : "bg-transparent text-gray-600 hover:bg-pink-50"
-      }`}
-    >
-      {children}
-    </button>
   );
 
   // Modify the existing return statement to include new sections
@@ -717,7 +517,7 @@ const CourseDetail = () => {
 
           {/* Tab Content */}
           <div className="mt-8">
-            <AnimatePresence mode="sync">
+            <AnimatePresence mode="wait">
               {/* Keep existing tab content */}
               {/* ... */}
               {activeTab === "content" && (
@@ -819,7 +619,7 @@ const CourseDetail = () => {
                   className="space-y-8"
                 >
                   <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+                    <h3 className="text-2xl font-bold mb-4">
                       What You'll Learn
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -841,7 +641,7 @@ const CourseDetail = () => {
                   </div>
 
                   <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+                    <h3 className="text-2xl font-bold mb-4">
                       Course Description
                     </h3>
                     <div className="prose dark:prose-invert max-w-none">
@@ -852,28 +652,12 @@ const CourseDetail = () => {
                         applications, you'll gain the skills needed to excel in
                         your career.
                       </p>
-
-                      <h4 className="text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white">
-                        Key Features
-                      </h4>
-                      <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
-                        <li>
-                          Comprehensive curriculum covering both basics and
-                          advanced topics
-                        </li>
-                        <li>Hands-on projects and real-world applications</li>
-                        <li>Interactive coding exercises and challenges</li>
-                        <li>Regular updates to keep content current</li>
-                        <li>24/7 support community access</li>
-                      </ul>
-
-                      <h4 className="text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white">
+                      <h4 className="text-xl font-semibold mt-6 mb-3">
                         Prerequisites
                       </h4>
                       <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
                         <li>Basic understanding of programming concepts</li>
                         <li>Familiarity with web technologies</li>
-                        <li>A computer with internet access</li>
                         <li>Desire to learn and practice</li>
                       </ul>
                     </div>
@@ -968,25 +752,15 @@ const CourseDetail = () => {
                     >
                       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 space-y-4">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-full bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center">
-                            {/* Dynamically render the appropriate Lucide icon */}
-                            {review.icon === "User" && (
-                              <User className="w-6 h-6 text-pink-600" />
-                            )}
-                            {review.icon === "Users" && (
-                              <Users className="w-6 h-6 text-pink-600" />
-                            )}
-                            {review.icon === "UserCircle" && (
-                              <UserCircle className="w-6 h-6 text-pink-600" />
-                            )}
-                            {review.icon === "UserCheck" && (
-                              <UserCheck className="w-6 h-6 text-pink-600" />
-                            )}
+                          <div className="w-12 h-12 rounded-full overflow-hidden">
+                            <img
+                              src={review.avatar}
+                              alt={review.user}
+                              className="w-full h-full object-cover"
+                            />
                           </div>
                           <div>
-                            <h4 className="font-medium text-gray-900 dark:text-white">
-                              {review.user}
-                            </h4>
+                            <h4 className="font-medium">{review.user}</h4>
                             <p className="text-sm text-gray-500">
                               {review.date}
                             </p>
