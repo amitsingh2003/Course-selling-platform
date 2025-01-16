@@ -69,20 +69,28 @@ const CourseDetail = () => {
   const videoRef = useRef(null);
 
   const courseStats = [
-    { icon: <Users className="w-5 h-5" />, label: "Enrolled", value: "12,345" },
     {
-      icon: <Clock className="w-5 h-5" />,
+      icon: <Users className="w-5 h-5  text-blue-500" />,
+      label: "Enrolled",
+      value: "12,345",
+    },
+    {
+      icon: <Clock className="w-5 h-5 text-pink-500" />,
       label: "Duration",
       value: "12 weeks",
     },
-    { icon: <Book className="w-5 h-5" />, label: "Lessons", value: "50+" },
     {
-      icon: <MessageCircle className="w-5 h-5" />,
+      icon: <Book className="w-5 h-5 text-yellow-500" />,
+      label: "Lessons",
+      value: "50+",
+    },
+    {
+      icon: <MessageCircle className="w-5 h-5 text-blue-500" />,
       label: "Languages",
       value: "3",
     },
     {
-      icon: <Target className="w-5 h-5" />,
+      icon: <Target className="w-5 h-5 text-green-500" />,
       label: "Level",
       value: "All Levels",
     },
@@ -296,8 +304,11 @@ const CourseDetail = () => {
       className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mt-8"
     >
       <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <Trophy className="w-6 h-6 text-yellow-500" />
-        Achievements & Rewards
+        <Trophy className="w-6 h-6 text-purple-500" />
+        <span className="text-2xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+          {" "}
+          Achievements & Rewards
+        </span>
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {achievements.map((achievement) => (
@@ -307,10 +318,12 @@ const CourseDetail = () => {
             className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
           >
             <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-pink-100 dark:bg-pink-900/30 rounded-lg text-pink-600 dark:text-pink-400">
+              <div className="p-2 bg-pink-100 dark:bg-pink-900/30 rounded-lg text-pink-600 dark:text-white">
                 {achievement.icon}
               </div>
-              <h4 className="font-semibold">{achievement.title}</h4>
+              <h4 className="text-xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+                {achievement.title}
+              </h4>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
               {achievement.description}
@@ -349,8 +362,11 @@ const CourseDetail = () => {
       className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mt-8"
     >
       <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <BarChart2 className="w-6 h-6 text-blue-500" />
-        Learning Path Progress
+        <BarChart2 className="w-6 h-6 text-pink-500" />
+        <span className="text-2xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+          {" "}
+          Learning Path Progress{" "}
+        </span>
       </h3>
       <div className="relative">
         {learningPath.map((step, index) => (
@@ -387,7 +403,10 @@ const CourseDetail = () => {
     >
       <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
         <Target className="w-6 h-6 text-green-500" />
-        Weekly Challenges
+        <span className="text-3xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+          {" "}
+          Weekly Challenges{" "}
+        </span>
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {weeklyChallenges.map((challenge) => (
@@ -397,7 +416,9 @@ const CourseDetail = () => {
             className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
           >
             <div className="flex justify-between items-start mb-3">
-              <h4 className="font-semibold">{challenge.title}</h4>
+              <h4 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+                {challenge.title}
+              </h4>
               <span className="px-2 py-1 text-xs rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400">
                 {challenge.difficulty}
               </span>
@@ -424,7 +445,7 @@ const CourseDetail = () => {
     >
       <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
         <HelpCircle className="w-6 h-6 text-purple-500" />
-        Frequently Asked Questions
+      <span className="text-3xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">  Frequently Asked Questions </span>
       </h3>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
@@ -533,9 +554,6 @@ const CourseDetail = () => {
     <>
       <Nav />
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        {/* Keep existing progress bar and hero section */}
-        {/* ... */}
-        {/* Progress Bar */}
         <motion.div
           className="fixed top-0 left-0 right-0 h-1 bg-pink-500 z-50"
           style={{ scaleX: scrollProgress / 100 }}
@@ -558,7 +576,7 @@ const CourseDetail = () => {
                   transition={{ delay: 0.2 }}
                   className="flex items-center gap-4"
                 >
-                  <span className="inline-flex items-center px-4 py-2 rounded-full bg-pink-100 text-pink-600">
+                  <span className="inline-flex items-center px-4 py-2 rounded-full bg-pink-100 text-pink-500">
                     <BookOpen className="w-4 h-4 mr-2" />
                     {course.category}
                   </span>
@@ -572,7 +590,7 @@ const CourseDetail = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight"
+                  className="text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
                 >
                   {course.name}
                 </motion.h1>
@@ -611,7 +629,7 @@ const CourseDetail = () => {
                   className="flex items-center gap-6"
                 >
                   <div className="space-y-1">
-                    <span className="text-4xl font-bold text-pink-600 dark:text-pink-400">
+                    <span className="text-5xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                       ${course.price}
                     </span>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -718,8 +736,6 @@ const CourseDetail = () => {
           {/* Tab Content */}
           <div className="mt-8">
             <AnimatePresence mode="sync">
-              {/* Keep existing tab content */}
-              {/* ... */}
               {activeTab === "content" && (
                 <motion.div
                   key="content"
@@ -746,7 +762,7 @@ const CourseDetail = () => {
                             {index + 1}
                           </div>
                           <div>
-                            <h3 className="font-medium text-gray-900 dark:text-white">
+                            <h3 className="text-xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                               {section.title}
                             </h3>
                             <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -819,7 +835,7 @@ const CourseDetail = () => {
                   className="space-y-8"
                 >
                   <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+                    <h3 className="text-2xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                       What You'll Learn
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -841,7 +857,7 @@ const CourseDetail = () => {
                   </div>
 
                   <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+                    <h3 className="text-2xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                       Course Description
                     </h3>
                     <div className="prose dark:prose-invert max-w-none">
@@ -853,7 +869,7 @@ const CourseDetail = () => {
                         your career.
                       </p>
 
-                      <h4 className="text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white">
+                      <h4 className="text-2xl font-extrabold mt-5 mb-3 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                         Key Features
                       </h4>
                       <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
@@ -867,7 +883,7 @@ const CourseDetail = () => {
                         <li>24/7 support community access</li>
                       </ul>
 
-                      <h4 className="text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white">
+                      <h4 className="text-2xl font-extrabold mt-5 mb-3 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                         Prerequisites
                       </h4>
                       <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
@@ -896,7 +912,7 @@ const CourseDetail = () => {
                         className="relative rounded-xl overflow-hidden aspect-square"
                       >
                         <img
-                          src="/api/placeholder/400/400"
+                          src="https://cdn.dribbble.com/users/323673/screenshots/14147317/media/0eff5aa671929d1bcc3e9338193e5b15.png"
                           alt="Instructor"
                           className="w-full h-full object-cover"
                         />
@@ -904,7 +920,7 @@ const CourseDetail = () => {
                     </div>
                     <div className="w-full md:w-2/3 space-y-6">
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        <h3 className="text-4xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                           Sarah Johnson
                         </h3>
                         <p className="text-pink-500 font-medium">
@@ -937,12 +953,12 @@ const CourseDetail = () => {
                       </p>
 
                       <div className="flex gap-4">
-                        <button className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                          <MessageCircle className="w-4 h-4" />
+                        <button className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-700/50 ">
+                          <MessageCircle className="w-4 h-4 text-pink-500" />
                           Message
                         </button>
                         <button className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                          <Share2 className="w-4 h-4" />
+                          <Share2 className="w-4 h-4 text-pink-500" />
                           Share Profile
                         </button>
                       </div>
@@ -984,7 +1000,7 @@ const CourseDetail = () => {
                             )}
                           </div>
                           <div>
-                            <h4 className="font-medium text-gray-900 dark:text-white">
+                            <h4 className="text-xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                               {review.user}
                             </h4>
                             <p className="text-sm text-gray-500">
@@ -1009,7 +1025,7 @@ const CourseDetail = () => {
                         </p>
                         <div className="flex items-center gap-4 pt-4">
                           <button className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-2">
-                            <ThumbsUp className="w-4 h-4" />
+                            <ThumbsUp className="w-4 h-4 text-pink-500" />
                             Helpful
                           </button>
                           <button className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
@@ -1060,8 +1076,7 @@ const CourseDetail = () => {
           </div>
         </div>
 
-        {/* Keep existing fixed bottom bar for mobile */}
-        {/* ... */}
+        
         <motion.div
           initial={{ y: 100 }}
           animate={{ y: 0 }}
