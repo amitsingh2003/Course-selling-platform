@@ -321,7 +321,7 @@ const CourseDetail = () => {
               <div className="p-2 bg-pink-100 dark:bg-pink-900/30 rounded-lg text-pink-600 dark:text-white">
                 {achievement.icon}
               </div>
-              <h4 className="text-xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+              <h4 className="text-xl text-slate-600 dark:text-white">
                 {achievement.title}
               </h4>
             </div>
@@ -416,7 +416,7 @@ const CourseDetail = () => {
             className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
           >
             <div className="flex justify-between items-start mb-3">
-              <h4 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+              <h4 className="text-xl font-bold text-slate-600 dark:text-white ">
                 {challenge.title}
               </h4>
               <span className="px-2 py-1 text-xs rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400">
@@ -445,7 +445,10 @@ const CourseDetail = () => {
     >
       <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
         <HelpCircle className="w-6 h-6 text-purple-500" />
-      <span className="text-3xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">  Frequently Asked Questions </span>
+        <span className="text-3xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+          {" "}
+          Frequently Asked Questions{" "}
+        </span>
       </h3>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
@@ -541,8 +544,8 @@ const CourseDetail = () => {
       onClick={onClick}
       className={`px-6 py-3 rounded-lg transition-all duration-300 ${
         active
-          ? "bg-pink-500 text-white shadow-lg"
-          : "bg-transparent text-gray-600 hover:bg-pink-50"
+          ? "text-4xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-400"
+          : "bg-transparent text-gray-600 hover:text-pink-500 hover:scale-105"
       }`}
     >
       {children}
@@ -569,7 +572,16 @@ const CourseDetail = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Course Info */}
-              <div className="space-y-6">
+              <div className="space-y-8">
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
+                >
+                  {course.name}
+                </motion.h1>
+
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -586,23 +598,14 @@ const CourseDetail = () => {
                   </span>
                 </motion.div>
 
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
-                >
-                  {course.name}
-                </motion.h1>
-
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
                   className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
                 >
-                  Master the art of {course.category} with our comprehensive
-                  course designed for all skill levels.
+                  Master the art of {course.name} with our comprehensive course
+                  designed for all skill levels.
                 </motion.p>
 
                 <motion.div
@@ -632,9 +635,6 @@ const CourseDetail = () => {
                     <span className="text-5xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                       ${course.price}
                     </span>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      One-time payment
-                    </p>
                   </div>
 
                   <motion.button
@@ -693,7 +693,7 @@ const CourseDetail = () => {
                   <img
                     src={course.image}
                     alt={course.name}
-                    className="w-full transition-transform duration-500 group-hover:scale-105"
+                    className=" transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center group-hover:bg-black/60 transition-colors">
                     <motion.div
@@ -713,7 +713,7 @@ const CourseDetail = () => {
         {/* Main Content */}
         <div className="container mx-auto px-4 py-16">
           {/* Modified tabs to include new sections */}
-          <div className="flex space-x-4 mb-8 overflow-x-auto pb-2">
+          <div className="flex space-x-4 mb-8 overflow-x-auto pb-2  ">
             {[
               "content",
               "overview",
@@ -1076,7 +1076,6 @@ const CourseDetail = () => {
           </div>
         </div>
 
-        
         <motion.div
           initial={{ y: 100 }}
           animate={{ y: 0 }}
