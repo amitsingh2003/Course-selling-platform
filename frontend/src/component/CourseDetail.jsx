@@ -561,6 +561,16 @@ const CourseDetail = () => {
     }
   };
 
+  const handleLikeClick = () => {
+    setIsLiked(!isLiked);
+
+    if (!isLiked) {
+      toast.success("Added to Favorites");
+    } else {
+      toast.success("Removed from Favorites");
+    }
+  };
+
   // Modify the existing return statement to include new sections
   return (
     <>
@@ -676,7 +686,7 @@ const CourseDetail = () => {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    onClick={() => setIsLiked(!isLiked)}
+                    onClick={handleLikeClick}
                     className={`p-3 rounded-lg border ${
                       isLiked
                         ? "text-pink-500 border-pink-500"
