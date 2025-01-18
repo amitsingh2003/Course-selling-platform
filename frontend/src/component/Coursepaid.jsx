@@ -63,7 +63,9 @@ const EnhancedCoursePaid = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch("https://course-selling-platform-b.onrender.com/book");
+        const res = await fetch(
+          "https://course-selling-platform-b.onrender.com/book"
+        );
         const data = await res.json();
         setBook(data);
         setIsLoading(false);

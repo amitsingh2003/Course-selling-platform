@@ -18,6 +18,7 @@ import {
   Award,
 } from "lucide-react";
 import Card from "./Card";
+import AdvancedQuoteCard from "./QuoteOfDay";
 
 const EnhancedCourseSection = () => {
   const [courses, setCourses] = useState([]);
@@ -285,8 +286,7 @@ const EnhancedCourseSection = () => {
           ))}
         </motion.div>
 
-        {/* Courses Section with Enhanced Loading State */}
-        {/* Courses Section with Enhanced Loading State */}
+        
         {isLoading ? (
           <motion.div
             className="flex flex-col items-center justify-center h-64 space-y-4"
@@ -349,6 +349,9 @@ const EnhancedCourseSection = () => {
               </AnimatePresence>
             </div>
 
+
+          
+
             {/* Enhanced Course Cards Container */}
             <div
               id="course-container"
@@ -406,6 +409,7 @@ const EnhancedCourseSection = () => {
         )}
       </div>
 
+   <AdvancedQuoteCard></AdvancedQuoteCard>
       {/* Decorative Elements */}
       <motion.div
         className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-purple-500/10 to-transparent"
