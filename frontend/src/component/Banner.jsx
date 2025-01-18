@@ -14,7 +14,6 @@ const Banner = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
-  // Handle ESC key to close modal
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.keyCode === 27) setIsChatOpen(false);
@@ -25,7 +24,7 @@ const Banner = () => {
     };
   }, []);
 
-  // Prevent body scroll when modal is open
+  
   useEffect(() => {
     if (isChatOpen) {
       document.body.style.overflow = "hidden";
@@ -144,11 +143,12 @@ const Banner = () => {
                   <div className="w-full h-full animate-pulse" />
                 </div>
                 <img
-                  src="/banner.png"
-                  alt="E-Learning Platform"
-                  className="relative w-full h-auto transform hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute -right-8 top-1/4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl animate-bounce">
+  src="/banner.png"
+  alt="E-Learning Platform"
+  className="relative w-full h-auto transform hover:scale-105 transition-transform duration-300 md:block hidden"
+/>
+
+                <div className="absolute -right-8 top-1/4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl animate-bounce md:block hidden">
                   <Trophy className="w-8 h-8 text-yellow-500" />
                 </div>
               </div>
