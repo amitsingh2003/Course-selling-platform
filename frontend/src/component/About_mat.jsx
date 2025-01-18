@@ -326,7 +326,7 @@ const AboutSection = () => {
             success today.
           </p>
           <Link
-            to="/SignUp"
+            to="/Course"
             className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-purple-500 rounded-full shadow-lg hover:scale-105 transition-all duration-300"
           >
             Start Learning Now
