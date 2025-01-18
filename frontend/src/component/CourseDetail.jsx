@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import {
   BookOpen,
   Clock,
@@ -62,9 +63,7 @@ const CourseDetail = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [showAchievement, setShowAchievement] = useState(false);
   const [selectedFaq, setSelectedFaq] = useState(null);
-  const [userProgress, setUserProgress] = useState(35);
   const [activeChallenge, setActiveChallenge] = useState(null);
   const videoRef = useRef(null);
 
@@ -552,6 +551,16 @@ const CourseDetail = () => {
     </button>
   );
 
+  const handleBookmarkClick = () => {
+    setIsBookmarked(!isBookmarked);
+
+    if (!isBookmarked) {
+      toast.success("Added to Bookmarked");
+    } else {
+      toast.success("Removed from Bookmarked");
+    }
+  };
+
   // Modify the existing return statement to include new sections
   return (
     <>
@@ -654,7 +663,7 @@ const CourseDetail = () => {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    onClick={() => setIsBookmarked(!isBookmarked)}
+                    onClick={handleBookmarkClick}
                     className={`p-3 rounded-lg border ${
                       isBookmarked
                         ? "text-pink-500 border-pink-500"
