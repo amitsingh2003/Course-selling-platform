@@ -145,7 +145,7 @@ const QuoteOfDay = () => {
       ),
       {
         duration: Infinity,
-        position: "top-center",
+        position: "bottom-right",
       }
     );
   };
@@ -203,30 +203,6 @@ const QuoteOfDay = () => {
 
   return (
     <div className="relative w-full h-full min-h-[600px] perspective-1000 mt-10">
-      {/* Toast Container */}
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 2000,
-          style: {
-            background: "#333",
-            color: "#fff",
-          },
-          success: {
-            iconTheme: {
-              primary: "#10B981",
-              secondary: "#fff",
-            },
-          },
-          error: {
-            iconTheme: {
-              primary: "#EF4444",
-              secondary: "#fff",
-            },
-          },
-        }}
-      />
-
       {/* 3D Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full blur-xl animate-float" />

@@ -146,9 +146,7 @@ const Banner = () => {
                   <QuoteOfDay />
                 </div>
 
-                <div className="absolute -right-8 top-1/4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl animate-bounce md:block hidden">
-                  <Trophy className="w-8 h-8 text-yellow-500" />
-                </div>
+               
               </div>
             </div>
           </div>
