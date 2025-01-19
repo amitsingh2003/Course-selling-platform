@@ -8,7 +8,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import Chatbot from "./Chatbot";
-
+import QuoteOfDay from "./QuoteOfDay";
 
 const Banner = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -136,17 +136,15 @@ const Banner = () => {
               </div>
             </div>
 
-            {/* Right Content */}
+            {/* Right Content - Replaced Image with QuoteOfDay */}
             <div className="w-full md:w-1/2">
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-3xl blur-3xl opacity-20">
                   <div className="w-full h-full animate-pulse" />
                 </div>
-                <img
-                  src="/banner.png"
-                  alt="E-Learning Platform"
-                  className="relative w-full h-auto transform hover:scale-105 transition-transform duration-300 md:block hidden"
-                />
+                <div className="relative transform hover:scale-105 transition-transform duration-300">
+                  <QuoteOfDay />
+                </div>
 
                 <div className="absolute -right-8 top-1/4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl animate-bounce md:block hidden">
                   <Trophy className="w-8 h-8 text-yellow-500" />
