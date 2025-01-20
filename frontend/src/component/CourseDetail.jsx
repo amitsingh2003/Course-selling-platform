@@ -528,7 +528,7 @@ const CourseDetail = () => {
             exist.
           </p>
           <button
-            onClick={() => navigate("/courses")}
+            onClick={() => navigate("/Course")}
             className="px-6 py-2 bg-transparent border-2 border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-all duration-300"
           >
             Browse Courses

@@ -12,7 +12,7 @@ const MyCourses = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get("/api/my-courses"); // Replace with your API endpoint
+        const response = await axios.get("https://course-selling-platform-b.onrender.com/book"); // Replace with your API endpoint
         setCourses(response.data);
       } catch (err) {
         setError("Failed to load courses. Please try again later.");
