@@ -202,8 +202,8 @@ const QuoteOfDay = () => {
   }
 
   return (
-    <div className="relative w-full h-full min-h-[600px] perspective-1000 mt-10">
-      {/* 3D Floating Background Elements */}
+    <div className="relative w-full h-full min-h-[600px] perspective-1000 mt-10 px-4 sm:px-6 md:px-8">
+      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full blur-xl animate-float" />
         <div className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-full blur-xl animate-float-delayed" />
@@ -212,39 +212,39 @@ const QuoteOfDay = () => {
 
       {/* Main Quote Card */}
       <div
-        className={`relative max-w-3xl mx-auto transform-gpu transition-all duration-1000 
+        className={`relative max-w-3xl mx-auto transition-all duration-1000 
         ${
           isVisible
             ? "translate-y-0 opacity-100 rotate-y-0"
             : "translate-y-10 opacity-0 rotate-y-180"
         }`}
       >
-        <div className="relative group">
+        <div className="relative">
           <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-2xl blur-xl opacity-40 group-hover:opacity-50 transition duration-1000 animate-gradient-shift" />
 
-          <div className="relative backdrop-blur-lg bg-white/90 dark:bg-gray-900/90 rounded-xl p-8 shadow-2xl hover:shadow-purple-500/20">
+          <div className="relative backdrop-blur-lg bg-white/90 dark:bg-gray-900/90 rounded-xl p-4 md:p-8 shadow-2xl">
             {/* Quote Icon */}
-            <div className="absolute -top-8 -left-8 p-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300 animate-float">
-              <Quote className="w-8 h-8 text-white" />
+            <div className="absolute -top-6 -left-6 md:-top-8 md:-left-8 p-4 md:p-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-lg">
+              <Quote className="w-6 h-6 md:w-8 md:h-8 text-white" />
               <Sparkles className="absolute top-2 right-2 w-4 h-4 text-yellow-300 animate-ping" />
             </div>
 
             {/* Quote Content */}
-            <div className="mt-8 mb-8">
-              <blockquote className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 leading-relaxed animate-gradient-text">
+            <div className="mt-6 md:mt-8 mb-6 md:mb-8">
+              <blockquote className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 leading-relaxed animate-gradient-text">
                 "{quote.quote}"
               </blockquote>
             </div>
 
             {/* Author and Interactive Section */}
-            <div className="flex flex-col gap-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <div className="flex justify-between items-center">
-                <p className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+            <div className="flex flex-col gap-4 md:gap-6 pt-4 md:pt-6 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <p className="text-lg md:text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                   - {quote.author}
                 </p>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 md:gap-4 flex-wrap">
                   <button
                     onClick={() => {
                       setLiked(!liked);
@@ -252,7 +252,7 @@ const QuoteOfDay = () => {
                         liked ? "Removed from favorites" : "Added to favorites"
                       );
                     }}
-                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-110 active:scale-95"
+                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-105 active:scale-95"
                   >
                     <Heart
                       className={`w-6 h-6 transition-all duration-300 ${
@@ -265,7 +265,7 @@ const QuoteOfDay = () => {
 
                   <button
                     onClick={handleCopy}
-                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-110 active:scale-95"
+                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-105 active:scale-95"
                   >
                     <Copy
                       className={`w-6 h-6 transition-all duration-300 ${
@@ -283,7 +283,7 @@ const QuoteOfDay = () => {
                           : "Added to bookmarks"
                       );
                     }}
-                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-110 active:scale-95"
+                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-105 active:scale-95"
                   >
                     <Bookmark
                       className={`w-6 h-6 transition-all duration-300 ${
@@ -296,14 +296,14 @@ const QuoteOfDay = () => {
 
                   <button
                     onClick={handleShare}
-                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-110 active:scale-95"
+                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-105 active:scale-95"
                   >
                     <Share2 className="w-6 h-6 text-gray-400 hover:text-purple-500" />
                   </button>
 
                   <button
                     onClick={fetchQuote}
-                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-110 active:scale-95"
+                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-105 active:scale-95"
                   >
                     <RefreshCw className="w-6 h-6 text-gray-400 hover:text-purple-500" />
                   </button>
@@ -311,32 +311,29 @@ const QuoteOfDay = () => {
               </div>
 
               {/* Add Thought Section */}
-              <div className="relative">
+              <div className="relative w-full">
                 {!showThoughtInput ? (
                   <button
                     onClick={() => setShowThoughtInput(true)}
-                    className="w-full px-6 py-3 text-left text-gray-500 border-2 border-dashed border-gray-300 rounded-xl hover:border-purple-500 hover:text-purple-500 transition-all duration-300 group relative overflow-hidden"
+                    className="w-full px-4 md:px-6 py-3 text-left text-gray-500 border-2 border-dashed border-gray-300 rounded-xl hover:border-purple-500 hover:text-purple-500 transition-all duration-300"
                   >
-                    <span className="relative z-10">
-                      Share your thoughts on this quote...
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/10 dark:to-pink-900/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+                    Share your thoughts on this quote...
                   </button>
                 ) : (
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <input
                       type="text"
                       value={userThought}
                       onChange={(e) => setUserThought(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder="Type your thoughts..."
-                      className="flex-1 px-4 py-2 dark:bg-gray-800 dark:text-white rounded-lg border-2 border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                      className="flex-1 px-4 py-2 dark:bg-gray-800 dark:text-white rounded-lg border-2 border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all duration-300 bg-white/50 backdrop-blur-sm w-full sm:w-auto"
                     />
                     <button
                       onClick={handleAddThought}
-                      className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 transform hover:scale-105 active:scale-95"
+                      className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg transition-all duration-300 w-full sm:w-auto"
                     >
-                      <Send className="w-5 h-5" />
+                      <Send className="w-5 h-5 mx-auto" />
                     </button>
                   </div>
                 )}
@@ -374,8 +371,8 @@ const QuoteOfDay = () => {
                           }}
                           className="flex items-center gap-1 text-gray-400 hover:text-purple-500 transition-colors duration-300 group"
                         >
-                          <ThumbsUp className="w-4 h-4 transform group-hover:scale-110 transition-transform" />
-                          <span className="text-sm transform group-hover:scale-110 transition-transform">
+                          <ThumbsUp className="w-4 h-4 transform group-hover:scale-105 transition-transform" />
+                          <span className="text-sm transform group-hover:scale-105 transition-transform">
                             {thought.likes}
                           </span>
                         </button>
@@ -383,7 +380,7 @@ const QuoteOfDay = () => {
                           onClick={() => handleDeleteThought(thought.id)}
                           className="text-gray-400 hover:text-red-500 transition-colors duration-300 group p-1 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20"
                         >
-                          <Trash2 className="w-4 h-4 transform group-hover:scale-110 transition-transform" />
+                          <Trash2 className="w-4 h-4 transform group-hover:scale-105 transition-transform" />
                         </button>
                       </div>
                     </div>
