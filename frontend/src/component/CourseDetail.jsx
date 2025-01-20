@@ -664,7 +664,8 @@ const CourseDetail = () => {
                       e.stopPropagation();
                       navigate(`/purchase/${course.id}`, { state: { course } });
                     }}
-                    className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-pink-500/25 flex items-center"
+                    className="bg-pink-600 hover:bg-pink-700 text-white px-2 py-3 rounded-xl 
+                    font-medium transition-all duration-300 shadow-lg hover:shadow-pink-500/25 flex items-center"
                   >
                     <ShoppingCart className="w-5 h-5 mr-2" />
                     Enroll Now
