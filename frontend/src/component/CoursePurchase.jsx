@@ -71,24 +71,22 @@ const PurchasePage = () => {
       title: "Credit/Debit Card",
       description: "Pay securely with your card",
       logos: [
-        "/api/placeholder/32/20", // Visa
-        "/api/placeholder/32/20", // Mastercard
-        "/api/placeholder/32/20", // Amex
+        
+       
       ],
     },
     paypal: {
       icon: Wallet,
       title: "PayPal",
       description: "Fast and secure payment with PayPal",
-      logos: ["/api/placeholder/80/20"], // PayPal logo
+      logos: [], // PayPal logo
     },
     crypto: {
       icon: Globe,
       title: "Cryptocurrency",
       description: "Pay with Bitcoin, Ethereum, or other crypto",
       logos: [
-        "/api/placeholder/20/20", // BTC
-        "/api/placeholder/20/20", // ETH
+       
       ],
     },
     mobile: {
@@ -96,8 +94,7 @@ const PurchasePage = () => {
       title: "Mobile Payment",
       description: "Apple Pay, Google Pay, or other mobile wallets",
       logos: [
-        "/api/placeholder/32/20", // Apple Pay
-        "/api/placeholder/32/20", // Google Pay
+      
       ],
     },
   };
