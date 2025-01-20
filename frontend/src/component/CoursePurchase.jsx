@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import {
   CreditCard,
   Lock,
@@ -12,6 +15,17 @@ import {
   Clock,
   Info,
   ChevronDown,
+  DollarSign,
+  Gift,
+  Calendar,
+  Award,
+  BookOpen,
+  Timer,
+  CheckCircle2,
+  AlertCircle,
+  CreditCard as VisaIcon,
+  Coffee,
+  CircleDollarSign,
 } from "lucide-react";
 import Footer from "./Footer";
 import Nav from "./Nav";
@@ -24,12 +38,27 @@ const PurchasePage = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("card");
   const [loading, setLoading] = useState(false);
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [showPromoCode, setShowPromoCode] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [paypalEmail, setPaypalEmail] = useState("");
+  const [cryptoAddress, setCryptoAddress] = useState("");
+  const [selectedCrypto, setSelectedCrypto] = useState("btc");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [selectedMobileWallet, setSelectedMobileWallet] = useState("apple");
   const [paymentDetails, setPaymentDetails] = useState({
     cardNumber: "",
     cardName: "",
     expiry: "",
     cvv: "",
   });
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
 
   if (!course) {
     navigate("/courses");
@@ -41,22 +70,51 @@ const PurchasePage = () => {
       icon: CreditCard,
       title: "Credit/Debit Card",
       description: "Pay securely with your card",
+      logos: [
+        "/api/placeholder/32/20", // Visa
+        "/api/placeholder/32/20", // Mastercard
+        "/api/placeholder/32/20", // Amex
+      ],
     },
     paypal: {
       icon: Wallet,
       title: "PayPal",
       description: "Fast and secure payment with PayPal",
+      logos: ["/api/placeholder/80/20"], // PayPal logo
     },
     crypto: {
       icon: Globe,
       title: "Cryptocurrency",
       description: "Pay with Bitcoin, Ethereum, or other crypto",
+      logos: [
+        "/api/placeholder/20/20", // BTC
+        "/api/placeholder/20/20", // ETH
+      ],
     },
     mobile: {
       icon: Smartphone,
       title: "Mobile Payment",
       description: "Apple Pay, Google Pay, or other mobile wallets",
+      logos: [
+        "/api/placeholder/32/20", // Apple Pay
+        "/api/placeholder/32/20", // Google Pay
+      ],
     },
+  };
+
+  const courseFeatures = [
+    { icon: BookOpen, text: "Comprehensive curriculum" },
+    { icon: Timer, text: "Lifetime access" },
+    { icon: Award, text: "Certificate of completion" },
+    { icon: Coffee, text: "1-on-1 mentorship" },
+    { icon: Globe, text: "Global community access" },
+    { icon: CircleDollarSign, text: "Money-back guarantee" },
+  ];
+
+  const handlePromoCode = () => {
+    if (promoCode.toLowerCase() === "welcome") {
+      setDiscount(10);
+    }
   };
 
   const handlePaymentSubmit = async (e) => {
@@ -86,132 +144,278 @@ const PurchasePage = () => {
     setLoading(false);
   };
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+  };
+
   return (
     <>
       <Nav />
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white dark:from-gray-900 dark:to-gray-800 py-12 mt-16">
+      <div
+        className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50
+dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 mt-16
+transition-colors duration-500"
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
+          <motion.div
+            className="max-w-6xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             {step === 1 ? (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Course Summary - Left Panel */}
                 <div className="lg:col-span-1">
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sticky top-24">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                      Course Summary
-                    </h2>
-                    <div className="space-y-4">
-                      <img
+                  <motion.div
+                    className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden sticky top-24"
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    {/* Course Image Banner */}
+                    <div className="relative h-48">
+                      <motion.img
                         src={course.image}
                         alt={course.name}
-                        className="w-full h-48 object-cover rounded-xl"
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
                       />
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {course.name}
-                      </h3>
-
-                      <div className="space-y-3">
-                        <div className="flex items-center text-gray-600 dark:text-gray-300">
-                          <Clock className="w-4 h-4 mr-2" />
-                          <span>{course.duration || "Self-paced"}</span>
-                        </div>
-                        <div className="flex items-center text-gray-600 dark:text-gray-300">
-                          <Globe className="w-4 h-4 mr-2" />
-                          <span>{course.level || "All Levels"}</span>
-                        </div>
-                      </div>
-
-                      {/* Custom Accordion */}
-                      <div className="border border-gray-200 dark:border-gray-700 rounded-lg">
-                        <button
-                          onClick={() => setIsAccordionOpen(!isAccordionOpen)}
-                          className="w-full px-4 py-3 flex justify-between items-center text-left text-gray-900 dark:text-white"
-                        >
-                          <span className="font-medium">What's included</span>
-                          <ChevronDown
-                            className={`w-5 h-5 transition-transform ${
-                              isAccordionOpen ? "transform rotate-180" : ""
-                            }`}
-                          />
-                        </button>
-                        {isAccordionOpen && (
-                          <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700">
-                            <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-                              <li>✓ Lifetime access</li>
-                              <li>✓ Certificate of completion</li>
-                              <li>✓ Downloadable resources</li>
-                              <li>✓ Mobile & desktop access</li>
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                        <div className="space-y-2">
-                          <div className="flex items-center justify-between text-gray-600 dark:text-gray-300">
-                            <span>Course Price</span>
-                            <span className="font-semibold">
-                              ${course.price}
-                            </span>
-                          </div>
-                          <div className="flex items-center justify-between text-gray-600 dark:text-gray-300">
-                            <span>Platform Fee</span>
-                            <span className="font-semibold">$0</span>
-                          </div>
-                          <div className="flex items-center justify-between text-lg font-bold text-gray-900 dark:text-white pt-2">
-                            <span>Total</span>
-                            <span>${course.price}</span>
-                          </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
+                        <div className="absolute bottom-4 left-4">
+                          <span className="px-3 py-1 bg-pink-500 text-white text-sm font-medium rounded-full">
+                            {course.category || "Development"}
+                          </span>
                         </div>
                       </div>
                     </div>
-                  </div>
+
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                        {course.name}
+                      </h3>
+
+                      {/* Course Quick Info */}
+                      <div className="grid grid-cols-2 gap-4 mb-6">
+                        {courseFeatures.map((feature, index) => (
+                          <motion.div
+                            key={index}
+                            className="flex items-center gap-2 text-gray-600 dark:text-gray-300"
+                            whileHover={{ scale: 1.05 }}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                          >
+                            <feature.icon className="w-4 h-4 text-pink-500" />
+                            <span className="text-sm">{feature.text}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      {/* What's Included Accordion */}
+                      <motion.div
+                        className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden mb-6"
+                        initial={false}
+                        animate={{ height: isAccordionOpen ? "auto" : "48px" }}
+                      >
+                        <button
+                          onClick={() => setIsAccordionOpen(!isAccordionOpen)}
+                          className="w-full px-4 py-3 flex justify-between items-center bg-gray-50 dark:bg-gray-700/50"
+                        >
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            What's included
+                          </span>
+                          <motion.div
+                            animate={{ rotate: isAccordionOpen ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronDown className="w-5 h-5" />
+                          </motion.div>
+                        </button>
+                        <AnimatePresence>
+                          {isAccordionOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="px-4 py-3"
+                            >
+                              <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                                <li className="flex items-center gap-2">
+                                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                  Full course access
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                  Downloadable resources
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                  Certificate of completion
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                  24/7 support access
+                                </li>
+                              </ul>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+
+                      {/* Price Summary */}
+                      <div className="space-y-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div className="flex justify-between text-gray-600 dark:text-gray-300">
+                          <span>Original Price</span>
+                          <span className="font-medium">${course.price}</span>
+                        </div>
+                        {discount > 0 && (
+                          <div className="flex justify-between text-green-600 dark:text-green-400">
+                            <span>Discount</span>
+                            <span className="font-medium">
+                              -${((course.price * discount) / 100).toFixed(2)}
+                            </span>
+                          </div>
+                        )}
+                        <div className="flex justify-between text-xl font-bold text-gray-900 dark:text-white pt-2">
+                          <span>Total</span>
+                          <span>
+                            $
+                            {((course.price * (100 - discount)) / 100).toFixed(
+                              2
+                            )}
+                          </span>
+                        </div>
+
+                        {/* Promo Code Section */}
+                        <div className="pt-4">
+                          {!showPromoCode ? (
+                            <button
+                              onClick={() => setShowPromoCode(true)}
+                              className="text-pink-600 dark:text-pink-400 text-sm font-medium flex items-center gap-2"
+                            >
+                              <Gift className="w-4 h-4" />
+                              Have a promo code?
+                            </button>
+                          ) : (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              className="flex gap-2"
+                            >
+                              <input
+                                type="text"
+                                placeholder="Enter code"
+                                value={promoCode}
+                                onChange={(e) => setPromoCode(e.target.value)}
+                                className="flex-1 px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600
+bg-white dark:bg-gray-700 text-sm"
+                              />
+                              <button
+                                onClick={handlePromoCode}
+                                className="px-3 py-2 bg-pink-600 text-white rounded-lg text-sm font-medium"
+                              >
+                                Apply
+                              </button>
+                            </motion.div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
 
                 {/* Payment Section - Right Panel */}
                 <div className="lg:col-span-2">
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                      Payment Method
-                    </h2>
+                  <motion.div
+                    className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl"
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    {/* Payment Methods */}
+                    <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                        Select Payment Method
+                      </h2>
 
-                    {/* Custom Payment Method Tabs */}
-                    <div className="grid grid-cols-4 gap-4 mb-6">
-                      {Object.entries(paymentMethods).map(
-                        ([key, { icon: Icon, title }]) => (
-                          <button
-                            key={key}
-                            onClick={() => setSelectedPaymentMethod(key)}
-                            className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-colors ${
-                              selectedPaymentMethod === key
-                                ? "border-pink-500 bg-pink-50 dark:bg-pink-900/20"
-                                : "border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
-                            }`}
-                          >
-                            <Icon className="w-6 h-6" />
-                            <span className="text-sm">{title}</span>
-                          </button>
-                        )
-                      )}
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {Object.entries(paymentMethods).map(
+                          ([key, { icon: Icon, title, logos }]) => (
+                            <motion.button
+                              key={key}
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              onClick={() => setSelectedPaymentMethod(key)}
+                              className={`relative p-4 rounded-xl border-2 transition-all duration-200
+${
+  selectedPaymentMethod === key
+    ? "border-pink-500 bg-pink-50 dark:bg-pink-900/20"
+    : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
+}`}
+                            >
+                              <div className="flex flex-col items-center gap-3">
+                                <Icon
+                                  className={`w-6 h-6 ${
+                                    selectedPaymentMethod === key
+                                      ? "text-pink-500"
+                                      : "text-gray-600 dark:text-gray-400"
+                                  }`}
+                                />
+                                <span className="text-sm font-medium">
+                                  {title}
+                                </span>
+
+                                {/* Payment Method Logos */}
+                                <div className="flex gap-2 mt-2">
+                                  {logos.map((logo, index) => (
+                                    <img
+                                      key={index}
+                                      src={logo}
+                                      alt={`${title} logo`}
+                                      className="h-5 object-contain"
+                                    />
+                                  ))}
+                                </div>
+                              </div>
+                              {selectedPaymentMethod === key && (
+                                <motion.div
+                                  layoutId="selectedIndicator"
+                                  className="absolute -top-px -right-px p-1 bg-pink-500 rounded-bl-xl rounded-tr-xl"
+                                  transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 30,
+                                  }}
+                                >
+                                  <CheckCircle2 className="w-4 h-4 text-white" />
+                                </motion.div>
+                              )}
+                            </motion.button>
+                          )
+                        )}
+                      </div>
                     </div>
 
-                    {/* Payment Forms */}
-                    <div>
-                      {selectedPaymentMethod === "card" && (
-                        <form
-                          onSubmit={handlePaymentSubmit}
-                          className="space-y-6"
-                        >
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="md:col-span-2">
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {/* Payment Details Form */}
+                    <form onSubmit={handlePaymentSubmit} className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                        Payment Details
+                      </h3>
+
+                      <div className="space-y-4">
+                        {selectedPaymentMethod === "card" && (
+                          <>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 Card Number
                               </label>
                               <div className="relative">
                                 <input
                                   type="text"
-                                  placeholder="1234 5678 9012 3456"
-                                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-pink-500"
                                   value={paymentDetails.cardNumber}
                                   onChange={(e) =>
                                     setPaymentDetails({
@@ -219,20 +423,21 @@ const PurchasePage = () => {
                                       cardNumber: e.target.value,
                                     })
                                   }
+                                  placeholder="1234 5678 9012 3456"
+                                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                       bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                                   required
                                 />
-                                <CreditCard className="absolute right-3 top-3 w-6 h-6 text-gray-400" />
+                                <VisaIcon className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" />
                               </div>
                             </div>
 
-                            <div className="md:col-span-2">
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 Cardholder Name
                               </label>
                               <input
                                 type="text"
-                                placeholder="John Doe"
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-pink-500"
                                 value={paymentDetails.cardName}
                                 onChange={(e) =>
                                   setPaymentDetails({
@@ -240,256 +445,240 @@ const PurchasePage = () => {
                                     cardName: e.target.value,
                                   })
                                 }
+                                placeholder="John Doe"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                                 required
                               />
                             </div>
 
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Expiry Date
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="MM/YY"
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-pink-500"
-                                value={paymentDetails.expiry}
-                                onChange={(e) =>
-                                  setPaymentDetails({
-                                    ...paymentDetails,
-                                    expiry: e.target.value,
-                                  })
-                                }
-                                required
-                              />
-                            </div>
-
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                CVV
-                              </label>
-                              <div className="relative">
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                  Expiry Date
+                                </label>
                                 <input
                                   type="text"
-                                  placeholder="123"
-                                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-pink-500"
-                                  value={paymentDetails.cvv}
+                                  value={paymentDetails.expiry}
                                   onChange={(e) =>
                                     setPaymentDetails({
                                       ...paymentDetails,
-                                      cvv: e.target.value,
+                                      expiry: e.target.value,
                                     })
                                   }
+                                  placeholder="MM/YY"
+                                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                       bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                                   required
                                 />
-                                <Lock className="absolute right-3 top-3 w-5 h-5 text-gray-400" />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                  CVV
+                                </label>
+                                <div className="relative">
+                                  <input
+                                    type="text"
+                                    value={paymentDetails.cvv}
+                                    onChange={(e) =>
+                                      setPaymentDetails({
+                                        ...paymentDetails,
+                                        cvv: e.target.value,
+                                      })
+                                    }
+                                    placeholder="123"
+                                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                         bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                    required
+                                  />
+                                  <Info className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          </>
+                        )}
 
-                          {/* Custom Alert */}
-                          <div className="flex items-start gap-3 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-                            <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-                            <p className="text-sm text-blue-700 dark:text-blue-300">
-                              Your card will be charged ${course.price}{" "}
-                              immediately. Refunds available within 30 days.
+                        {selectedPaymentMethod === "paypal" && (
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                              PayPal Email
+                            </label>
+                            <input
+                              type="email"
+                              value={paypalEmail}
+                              onChange={(e) => setPaypalEmail(e.target.value)}
+                              placeholder="your@email.com"
+                              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                   bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                              required
+                            />
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                              You will be redirected to PayPal to complete your
+                              payment
                             </p>
                           </div>
+                        )}
 
-                          <button
-                            type="submit"
-                            className="w-full bg-pink-600 hover:bg-pink-700 text-white font-medium py-4 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2"
-                            disabled={loading}
-                          >
-                            {loading ? (
-                              <>
-                                <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
-                                Processing...
-                              </>
-                            ) : (
-                              <>
-                                <Lock className="w-5 h-5" />
-                                Pay ${course.price}
-                              </>
-                            )}
-                          </button>
-
-                          <div className="flex items-center gap-2 justify-center text-sm text-gray-600 dark:text-gray-400">
-                            <Shield className="w-4 h-4" />
-                            <span>Secure payment processed by Stripe</span>
-                          </div>
-                        </form>
-                      )}
-
-                      {selectedPaymentMethod === "paypal" && (
-                        <div className="text-center p-8">
-                          <Wallet className="w-16 h-16 mx-auto mb-4 text-blue-500" />
-                          <h3 className="text-xl font-semibold mb-2">
-                            Pay with PayPal
-                          </h3>
-                          <p className="text-gray-600 dark:text-gray-400 mb-6">
-                            You'll be redirected to PayPal to complete your
-                            purchase
-                          </p>
-                          <button
-                            onClick={handlePaymentSubmit}
-                            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-4 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2"
-                            disabled={loading}
-                          >
-                            {loading ? (
-                              <>
-                                <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
-                                Processing...
-                              </>
-                            ) : (
-                              "Continue to PayPal"
-                            )}
-                          </button>
-                        </div>
-                      )}
-
-                      {selectedPaymentMethod === "crypto" && (
-                        <div className="text-center p-8">
-                          <Globe className="w-16 h-16 mx-auto mb-4 text-purple-500" />
-                          <h3 className="text-xl font-semibold mb-2">
-                            Pay with Cryptocurrency
-                          </h3>
-                          <p className="text-gray-600 dark:text-gray-400 mb-6">
-                            Choose your preferred cryptocurrency
-                          </p>
-                          <div className="grid grid-cols-2 gap-4 mb-6">
-                            <button
-                              className="p-4 border rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-center gap-2"
-                              onClick={handlePaymentSubmit}
-                            >
-                              <img
-                                src="/api/placeholder/24/24"
-                                alt="BTC"
-                                className="w-6 h-6"
-                              />
-                              Bitcoin
-                            </button>
-                            <button
-                              className="p-4 border rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-center gap-2"
-                              onClick={handlePaymentSubmit}
-                            >
-                              <img
-                                src="/api/placeholder/24/24"
-                                alt="ETH"
-                                className="w-6 h-6"
-                              />
-                              Ethereum
-                            </button>
-                          </div>
-                          <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                              Current Exchange Rate:
-                              <br />
-                              1 BTC = $45,000 USD
-                              <br />1 ETH = $3,200 USD
-                            </p>
-                            <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6">
-                              <p className="text-sm">
-                                Amount due: ${course.price}
-                                <br />≈ {(course.price / 45000).toFixed(6)} BTC
-                                <br />≈ {(course.price / 3200).toFixed(6)} ETH
-                              </p>
+                        {selectedPaymentMethod === "crypto" && (
+                          <>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Select Cryptocurrency
+                              </label>
+                              <select
+                                value={selectedCrypto}
+                                onChange={(e) =>
+                                  setSelectedCrypto(e.target.value)
+                                }
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                required
+                              >
+                                <option value="btc">Bitcoin (BTC)</option>
+                                <option value="eth">Ethereum (ETH)</option>
+                                <option value="usdt">Tether (USDT)</option>
+                              </select>
                             </div>
-                            <div className="flex items-center gap-2 justify-center text-sm text-gray-600 dark:text-gray-400">
-                              <Shield className="w-4 h-4" />
-                              <span>
-                                Secure crypto payment processed by Coinbase
-                              </span>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Your {selectedCrypto.toUpperCase()} Address
+                              </label>
+                              <input
+                                type="text"
+                                value={cryptoAddress}
+                                onChange={(e) =>
+                                  setCryptoAddress(e.target.value)
+                                }
+                                placeholder="Enter your wallet address"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                required
+                              />
                             </div>
-                          </div>
-                        </div>
-                      )}
+                          </>
+                        )}
 
-                      {selectedPaymentMethod === "mobile" && (
-                        <div className="text-center p-8">
-                          <Smartphone className="w-16 h-16 mx-auto mb-4 text-green-500" />
-                          <h3 className="text-xl font-semibold mb-2">
-                            Mobile Payment
-                          </h3>
-                          <p className="text-gray-600 dark:text-gray-400 mb-6">
-                            Choose your preferred mobile payment method
-                          </p>
-                          <div className="space-y-4">
-                            <button
-                              onClick={handlePaymentSubmit}
-                              className="w-full p-4 border rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-center gap-3"
-                            >
-                              <img
-                                src="/api/placeholder/24/24"
-                                alt="Apple Pay"
-                                className="w-6 h-6"
+                        {selectedPaymentMethod === "mobile" && (
+                          <>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Select Mobile Wallet
+                              </label>
+                              <select
+                                value={selectedMobileWallet}
+                                onChange={(e) =>
+                                  setSelectedMobileWallet(e.target.value)
+                                }
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                required
+                              >
+                                <option value="apple">Apple Pay</option>
+                                <option value="google">Google Pay</option>
+                                <option value="samsung">Samsung Pay</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Mobile Number
+                              </label>
+                              <input
+                                type="tel"
+                                value={mobileNumber}
+                                onChange={(e) =>
+                                  setMobileNumber(e.target.value)
+                                }
+                                placeholder="Enter your mobile number"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                required
                               />
-                              Pay with Apple Pay
-                            </button>
-                            <button
-                              onClick={handlePaymentSubmit}
-                              className="w-full p-4 border rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-center gap-3"
-                            >
-                              <img
-                                src="/api/placeholder/24/24"
-                                alt="Google Pay"
-                                className="w-6 h-6"
-                              />
-                              Pay with Google Pay
-                            </button>
-                            <button
-                              onClick={handlePaymentSubmit}
-                              className="w-full p-4 border rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-center gap-3"
-                            >
-                              <img
-                                src="/api/placeholder/24/24"
-                                alt="Samsung Pay"
-                                className="w-6 h-6"
-                              />
-                              Pay with Samsung Pay
-                            </button>
-                          </div>
-                          <div className="mt-6 flex items-center gap-2 justify-center text-sm text-gray-600 dark:text-gray-400">
-                            <Shield className="w-4 h-4" />
-                            <span>Secure mobile payment processing</span>
-                          </div>
+                            </div>
+                          </>
+                        )}
+
+                        {/* Security Note - Keep this for all payment methods */}
+                        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mt-6">
+                          <Lock className="w-4 h-4" />
+                          <span>
+                            Your payment information is secure and encrypted
+                          </span>
                         </div>
-                      )}
-                    </div>
-                  </div>
+
+                        {/* Submit Button - Keep this for all payment methods */}
+                        <motion.button
+                          type="submit"
+                          disabled={loading}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="w-full mt-6 px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white 
+               rounded-xl font-medium transition-colors duration-200 flex items-center 
+               justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                          {loading ? (
+                            <>
+                              <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{
+                                  duration: 1,
+                                  repeat: Infinity,
+                                  ease: "linear",
+                                }}
+                              >
+                                <Clock className="w-5 h-5" />
+                              </motion.div>
+                              Processing...
+                            </>
+                          ) : (
+                            <>
+                              Complete Purchase
+                              <ArrowRight className="w-5 h-5" />
+                            </>
+                          )}
+                        </motion.button>
+                      </div>
+                    </form>
+                  </motion.div>
                 </div>
               </div>
             ) : (
-              // Success Screen
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 text-center">
-                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-10 h-10 text-green-500" />
-                </div>
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                  Payment Successful!
+              // Success State
+              <motion.div
+                className="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 text-center"
+                variants={fadeInUp}
+                initial="initial"
+                animate="animate"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                  className="w-16 h-16 mx-auto mb-6 bg-green-100 dark:bg-green-900/30 rounded-full 
+                           flex items-center justify-center"
+                >
+                  <CheckCircle className="w-8 h-8 text-green-500" />
+                </motion.div>
+
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  Purchase Successful!
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 mb-8">
-                  You now have access to "{course.name}". Get ready to start
-                  learning!
+                  Thank you for your purchase. You can now access your course in
+                  My course.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button
-                    onClick={() => navigate("/my-courses")}
-                    className="flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-200"
-                  >
-                    Go to My Courses
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={() => navigate(`/course/${course.id}`)}
-                    className="flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white px-6 py-3 rounded-xl font-medium transition-colors duration-200"
-                  >
-                    Start Learning
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => navigate("/my-Courses")}
+                  className="px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-xl 
+                           font-medium transition-colors duration-200"
+                >
+                  Go to My Courses
+                </motion.button>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
       <Footer />
