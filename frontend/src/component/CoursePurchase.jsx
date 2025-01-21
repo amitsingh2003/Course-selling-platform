@@ -70,10 +70,7 @@ const PurchasePage = () => {
       icon: CreditCard,
       title: "Credit/Debit Card",
       description: "Pay securely with your card",
-      logos: [
-        
-       
-      ],
+      logos: [],
     },
     paypal: {
       icon: Wallet,
@@ -85,17 +82,13 @@ const PurchasePage = () => {
       icon: Globe,
       title: "Cryptocurrency",
       description: "Pay with Bitcoin, Ethereum, or other crypto",
-      logos: [
-       
-      ],
+      logos: [],
     },
     mobile: {
       icon: Smartphone,
       title: "Mobile Payment",
       description: "Apple Pay, Google Pay, or other mobile wallets",
-      logos: [
-      
-      ],
+      logos: [],
     },
   };
 
@@ -222,7 +215,7 @@ transition-colors duration-500"
                           onClick={() => setIsAccordionOpen(!isAccordionOpen)}
                           className="w-full px-4 py-3 flex justify-between items-center bg-gray-50 dark:bg-gray-700/50"
                         >
-                          <span className="font-medium text-gray-900 dark:text-white">
+                          <span className="text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">
                             What's included
                           </span>
                           <motion.div
@@ -313,7 +306,7 @@ bg-white dark:bg-gray-700 text-sm"
                               />
                               <button
                                 onClick={handlePromoCode}
-                                className="px-3 py-2 bg-pink-600 text-white rounded-lg text-sm font-medium"
+                                className="px-3 py-2 bg-pink-500 text-white rounded-lg text-sm font-medium hover:bg-pink-700"
                               >
                                 Apply
                               </button>
@@ -335,7 +328,7 @@ bg-white dark:bg-gray-700 text-sm"
                   >
                     {/* Payment Methods */}
                     <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                      <h2 className="text-4xl font-bold mb-6  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                         Select Payment Method
                       </h2>
 
@@ -399,7 +392,7 @@ ${
 
                     {/* Payment Details Form */}
                     <form onSubmit={handlePaymentSubmit} className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                      <h3 className="text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 mb-6">
                         Payment Details
                       </h3>
 
