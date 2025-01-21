@@ -184,7 +184,7 @@ transition-colors duration-500"
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                      <h3 className="text-2xl font-bold mb-6  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                         {course.name}
                       </h3>
 
@@ -199,7 +199,7 @@ transition-colors duration-500"
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.1 }}
                           >
-                            <feature.icon className="w-4 h-4 text-pink-500" />
+                            <feature.icon className="w-4 h-4 text-purple-500" />
                             <span className="text-sm">{feature.text}</span>
                           </motion.div>
                         ))}
@@ -259,8 +259,10 @@ transition-colors duration-500"
                       {/* Price Summary */}
                       <div className="space-y-3 pt-4 border-t border-gray-200 dark:border-gray-700">
                         <div className="flex justify-between text-gray-600 dark:text-gray-300">
-                          <span>Original Price</span>
-                          <span className="font-medium">${course.price}</span>
+                          <span className="text-green-500">Original Price</span>
+                          <span className="font-medium text-green-500">
+                            ${course.price}
+                          </span>
                         </div>
                         {discount > 0 && (
                           <div className="flex justify-between text-green-600 dark:text-green-400">
@@ -271,8 +273,8 @@ transition-colors duration-500"
                           </div>
                         )}
                         <div className="flex justify-between text-xl font-bold text-gray-900 dark:text-white pt-2">
-                          <span>Total</span>
-                          <span>
+                          <span className="text-blue-500">Total</span>
+                          <span className="text-blue-500">
                             $
                             {((course.price * (100 - discount)) / 100).toFixed(
                               2
@@ -306,7 +308,7 @@ bg-white dark:bg-gray-700 text-sm"
                               />
                               <button
                                 onClick={handlePromoCode}
-                                className="px-3 py-2 bg-pink-500 text-white rounded-lg text-sm font-medium hover:bg-pink-700"
+                                className="px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white rounded-xl font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-pink-500/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:scale-95"
                               >
                                 Apply
                               </button>
@@ -343,7 +345,7 @@ bg-white dark:bg-gray-700 text-sm"
                               className={`relative p-4 rounded-xl border-2 transition-all duration-200
 ${
   selectedPaymentMethod === key
-    ? "border-pink-500 bg-pink-50 dark:bg-pink-900/20"
+    ? "border-pink-500 bg-pink-50  dark:bg-pink-900/20"
     : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
 }`}
                             >
@@ -392,7 +394,7 @@ ${
 
                     {/* Payment Details Form */}
                     <form onSubmit={handlePaymentSubmit} className="p-6">
-                      <h3 className="text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 mb-6">
+                      <h3 className="text-2xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 mb-6">
                         Payment Details
                       </h3>
 
@@ -400,7 +402,7 @@ ${
                         {selectedPaymentMethod === "card" && (
                           <>
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 Card Number
                               </label>
                               <div className="relative">
@@ -423,7 +425,7 @@ ${
                             </div>
 
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 Cardholder Name
                               </label>
                               <input
@@ -444,7 +446,7 @@ ${
 
                             <div className="grid grid-cols-2 gap-4">
                               <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                   Expiry Date
                                 </label>
                                 <input
@@ -463,7 +465,7 @@ ${
                                 />
                               </div>
                               <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                   CVV
                                 </label>
                                 <div className="relative">
@@ -490,7 +492,7 @@ ${
 
                         {selectedPaymentMethod === "paypal" && (
                           <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                               PayPal Email
                             </label>
                             <input
@@ -502,7 +504,7 @@ ${
                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                               required
                             />
-                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            <p className="mt-2 text-sm text-gray-600 dark:text-white">
                               You will be redirected to PayPal to complete your
                               payment
                             </p>
@@ -512,7 +514,7 @@ ${
                         {selectedPaymentMethod === "crypto" && (
                           <>
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 Select Cryptocurrency
                               </label>
                               <select
@@ -521,7 +523,7 @@ ${
                                   setSelectedCrypto(e.target.value)
                                 }
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
-                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white cursor-pointer"
                                 required
                               >
                                 <option value="btc">Bitcoin (BTC)</option>
@@ -530,7 +532,7 @@ ${
                               </select>
                             </div>
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                              <label className="block text-sm font-semibold text-gray-700 dark:text-white mb-2">
                                 Your {selectedCrypto.toUpperCase()} Address
                               </label>
                               <input
@@ -560,7 +562,7 @@ ${
                                   setSelectedMobileWallet(e.target.value)
                                 }
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
-                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white cursor-pointer "
                                 required
                               >
                                 <option value="apple">Apple Pay</option>
@@ -588,7 +590,7 @@ ${
                         )}
 
                         {/* Security Note - Keep this for all payment methods */}
-                        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mt-6">
+                        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-pink-500 mt-6">
                           <Lock className="w-4 h-4" />
                           <span>
                             Your payment information is secure and encrypted
@@ -601,9 +603,7 @@ ${
                           disabled={loading}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="w-full mt-6 px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white 
-               rounded-xl font-medium transition-colors duration-200 flex items-center 
-               justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                          className="w-full mt-6  px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded-xl font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-pink-500/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:scale-95disabled:opacity-70 disabled:cursor-not-allowed"
                         >
                           {loading ? (
                             <>
