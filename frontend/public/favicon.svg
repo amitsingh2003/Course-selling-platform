@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1">
+        <animate attributeName="stop-color" values="#ec4899;#8b5cf6;#8b5cf6;#ec4899" dur="3s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1">
+        <animate attributeName="stop-color" values="#8b5cf6;#ec4899;#ec4899;#8b5cf6" dur="3s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
+  </defs>
+  <path d="M32 10L4 25L32 40L60 25L32 10Z" fill="url(#grad)" stroke="#f3f4f6" stroke-width="1"/>
+  <path d="M20 28V42L32 48L44 42V28L32 34L20 28Z" fill="#8b5cf6" stroke="#f3f4f6" stroke-width="1"/>
+  <path d="M44 26V44L48 50L52 44V26" fill="#ec4899" stroke="#f3f4f6" stroke-width="1"/>
+  <path d="M25 45C25 45 30 48 32 48C34 48 39 45 39 45V54C39 54 34 57 32 57C30 57 25 54 25 54V45Z" 
+        fill="#f3f4f6" stroke="#ec4899" stroke-width="1"/>
+</svg>
