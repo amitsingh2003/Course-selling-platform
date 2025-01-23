@@ -90,7 +90,7 @@ const Banner = () => {
                     onFocus={() => setIsSearchFocused(true)}
                     onBlur={() => setIsSearchFocused(false)}
                     placeholder="Search for courses, topics, or skills..."
-                    className="w-full px-8 py-5 rounded-2xl border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-900 transition-all duration-300 pr-16"
+                    className="w-full px-8 py-5 rounded-2xl border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 focus:border-purple-500 focus:ring-4 focus:ring-pink-200 dark:focus:ring-purple-500 transition-all duration-300 pr-16"
                   />
                   <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 w-6 h-6" />
                 </div>
