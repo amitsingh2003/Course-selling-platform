@@ -300,13 +300,6 @@ const QuoteOfDay = () => {
                   >
                     <Share2 className="w-6 h-6 text-gray-400 hover:text-purple-500" />
                   </button>
-
-                  <button
-                    onClick={fetchQuote}
-                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-105 active:scale-95"
-                  >
-                    <RefreshCw className="w-6 h-6 text-gray-400 hover:text-purple-500" />
-                  </button>
                 </div>
               </div>
 
