@@ -224,9 +224,9 @@ const AboutSection = () => {
                 team: "150+ employees",
               },
               {
-                city: "London",
-                country: "United Kingdom",
-                role: "European Hub",
+                city: "Delhi",
+                country: "India",
+                role: "Indian centre ",
                 team: "100+ employees",
               },
               {
