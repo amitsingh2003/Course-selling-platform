@@ -319,7 +319,7 @@ const AboutSection = () => {
           transition={{ delay: 0.6 }}
         >
           <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
-            Be Part of Our Story
+            Be Part of Our Journey
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
             Join our global community of learners and start your journey towards
