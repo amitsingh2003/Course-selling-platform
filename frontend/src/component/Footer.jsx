@@ -169,9 +169,9 @@ const Footer = () => {
             </h4>
             <div className="flex space-x-4">
               {[
-                { Icon: Github, href: "#" },
+                { Icon: Github, href: "https://github.com/amitsingh2003" },
                 { Icon: Twitter, href: "#" },
-                { Icon: Linkedin, href: "#" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/in/amit-singh-17a99324b/" },
                 { Icon: Mail, href: "#" },
               ].map(({ Icon, href }, index) => (
                 <a
