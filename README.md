@@ -117,11 +117,12 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch: `git push origin feature-name`.
 5. Open a pull request.
 
-## License
+## Demo video
 
-This project is licensed under the [MIT License](LICENSE).
 
----
+https://github.com/user-attachments/assets/7017b81e-c72c-4577-9590-9b9c5945f6ee
+
+
 
 Feel free to explore and contribute to E-Store. Happy coding!
 
